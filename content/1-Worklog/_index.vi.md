@@ -1,7 +1,7 @@
 ﻿---
 title: "Nhật ký công việc"
 date: "2025-09-08"
-weight: 1
+weight: 10
 chapter: false
 pre: " <b> 1. </b> "
 ---
