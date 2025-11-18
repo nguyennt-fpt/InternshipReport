@@ -14,13 +14,6 @@
 	"content": "Báo cáo thực tập Thông tin sinh viên: Họ và tên: Nguyễn Thành Nguyên\nSố Điện Thoại: 0935457152\nEmail: nguyen.fridayed@gmail.com\nTrường: FPT University\nNgành: Information Assurance\nLớp: AWS082025\nCông ty thực tập: Công ty TNHH Amazon Web Services Vietnam\nVai trò thực tập: FCJ Cloud Intern\nThời gian thực tập: Từ ngày 08/09/2025 đến ngày 08/12/2025\nNội dung báo cáo Worklog Proposal Các bài Blog đã dịch Các events tham gia Workshop Tự đánh giá Chia sẻ, Đóng góp ý kiến "
 },
 {
-	"uri": "http://localhost:1313/vi/1-worklog/",
-	"title": "Nhật ký công việc",
-	"tags": [],
-	"description": "",
-	"content": "Tuần 1: Làm quen với AWS và các dịch vụ cơ bản trong AWS\nTuần 2: Khám phá mạng AWS, kết nối đa VPC và triển khai ứng dụng\nTuần 3: Thực hành các dịch vụ cốt lõi của AWS về giám sát, tự động mở rộng và quản lý tài nguyên\nTuần 4: Nâng cao kỹ năng triển khai và quản lý các dịch vụ AWS cốt lõi như DynamoDB, CloudFront và WorkSpaces\nTuần 5: Củng cố bảo mật và quản trị AWS thông qua IAM, KMS và CloudTrail\nTuần 6: Nâng cao kỹ năng về di chuyển dữ liệu, tự động hóa bảo mật và quản lý EC2 bằng DMS, Macie, GuardDuty, Secrets Manager và Lambda\nTuần 7: Khám phá AWS Monitoring, Automation, và Infrastructure as Code\n"
-},
-{
 	"uri": "http://localhost:1313/vi/1-worklog/1.1-week1/",
 	"title": "Worklog Tuần 1",
 	"tags": [],
@@ -271,6 +264,13 @@
 	"tags": [],
 	"description": "",
 	"content": "Mục tiêu Tuần 10: Luyện tập quy trình CI/CD bằng CodeBuild, CodePipeline, ECR và ECS Thực hành xây dựng và triển khai API bằng API Gateway và Lambda Các công việc cần triển khai trong tuần này: Ngày Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 2 - Sử dụng CodeBuild để tự động push image lên ECR + Tạo CodeBuild project và kết nối với GitHub + Tạo IAM roles cần thiết cho CodeBuild + Viết file buildspec.yml để build và push Docker image lên Amazon ECR + Chạy test build để kiểm tra image được push thành công 11/10/2025 11/10/2025 https://www.youtube.com/playlist?list=PL4NoNM0L1m70lB1qL6sJ9Xr43PVbua3u2 3 - Xây dựng CI/CD Pipeline sử dụng AWS CodePipeline - Luyện tập: + Tạo CodePipeline pipeline lắng nghe GitHub pushes + Tạo IAM roles cần thiết cho CodePipeline và phần deploy + Tự động deploy container updates lên ECS + Push code lên GitHub và kiểm tra ECS service được update thành công 11/11/2025 11/11/2025 https://www.youtube.com/playlist?list=PL4NoNM0L1m70lB1qL6sJ9Xr43PVbua3u2 4 - Học về Amazon API Gateway + Tạo API resources + Tạo và tích hợp Lambda functions với API Gateway + Tạo methods và test invoke Lambda function 11/12/2025 11/12/2025 https://www.youtube.com/playlist?list=PL4NoNM0L1m70lB1qL6sJ9Xr43PVbua3u2 5 - Thực hành Input Validation trong API Gateway - Luyện tập: + Tạo API Gateway models để validate request headers và body + Thêm mapping templates cho method request + Test logic validation bằng API Gateway console 11/13/2025 11/13/2025 https://www.youtube.com/playlist?list=PL4NoNM0L1m70lB1qL6sJ9Xr43PVbua3u2 6 - Sử dụng stage variables cho triển khai multi-environment - Luyện tập: + Tạo Lambda function và versions + Tạo aliases và map chúng vào các stage khác nhau + Thêm stage variables và reference chúng trong Lambda integration + Test và verify triển khai thành công 11/14/2025 11/14/2025 https://www.youtube.com/playlist?list=PL4NoNM0L1m70lB1qL6sJ9Xr43PVbua3u2 Kết quả đạt được tuần 10: Tạo được một quy trình CI/CD bằng CodeBuild, CodePipeline, ECR và ECS\nTạo CodeBuild project Viết và test hoàn chỉnh buildspec.yml để build và push image lên Amazon ECR Tạo CodePipeline pipeline kích hoạt từ GitHub pushes Tích hợp các bước source, build, deploy để tự động cập nhật container trên ECS Test toàn bộ pipeline và xác nhận ECS service được update sau mỗi lần push Làm quen với kiến trúc API Gateway\nTạo resources, methods và tích hợp với Lambda Xây dựng backend API đơn giản với API Gateway và Lambda Test method responses và Lambda invocation Triển khai request validation trong API Gateway\nTạo models để validate headers và request body Thêm và cấu hình mapping templates cho method request Xác thực logic validation bằng API Gateway console Thực hành triển khai multi-environment bằng stage variables\nTạo Lambda versions và aliases cho từng environment Cấu hình stage variables để chọn Lambda version tương ứng Test hành vi multi-stage cho dev, staging và prod "
+},
+{
+	"uri": "http://localhost:1313/vi/1-worklog/",
+	"title": "Nhật ký công việc",
+	"tags": [],
+	"description": "",
+	"content": "Tuần 1: Làm quen với AWS và các dịch vụ cơ bản trong AWS\nTuần 2: Khám phá mạng AWS, kết nối đa VPC và triển khai ứng dụng\nTuần 3: Thực hành các dịch vụ cốt lõi của AWS về giám sát, tự động mở rộng và quản lý tài nguyên\nTuần 4: Nâng cao kỹ năng triển khai và quản lý các dịch vụ AWS cốt lõi như DynamoDB, CloudFront và WorkSpaces\nTuần 5: Củng cố bảo mật và quản trị AWS thông qua IAM, KMS và CloudTrail\nTuần 6: Nâng cao kỹ năng về di chuyển dữ liệu, tự động hóa bảo mật và quản lý EC2 bằng DMS, Macie, GuardDuty, Secrets Manager và Lambda\nTuần 7: Khám phá AWS Monitoring, Automation, và Infrastructure as Code\n"
 },
 {
 	"uri": "http://localhost:1313/vi/1-worklog/1.5-week5/",
