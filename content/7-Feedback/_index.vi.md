@@ -1,11 +1,10 @@
-﻿---
+---
 title: "Chia sẻ, đóng góp ý kiến"
-date: "2025-11-29"
+date: "2024-01-01"
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
-
 ### Đánh giá chung
 
 **1. Môi trường làm việc**  

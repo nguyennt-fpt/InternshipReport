@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Báo cáo thực tập "
 date: "2025-09-08"
 weight: 1

@@ -1,11 +1,10 @@
-﻿---
+---
 title: "Sharing and Feedback"
-date: "2025-11-29"
+date: "2024-01-01"
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
-
 
 ### Overall Evaluation
 
@@ -53,4 +52,6 @@ Yes, I would be happy to continue if given the opportunity, as I feel there is s
 
 **Any other comments (free sharing):**  
 Thank you to everyone in the team for your support and guidance throughout my internship. I truly appreciate the experience and hope to stay connected in the future.
+
+
 

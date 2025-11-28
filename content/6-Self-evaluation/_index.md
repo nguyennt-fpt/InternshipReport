@@ -1,6 +1,6 @@
-﻿---
+---
 title: "Self-Assessment"
-date: "2025-11-29"
+date: "2024-01-01"
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
@@ -35,4 +35,5 @@ To objectively reflect on my internship period, I would like to evaluate myself 
 * Enhance communication skills in both daily interactions and professional settings, including the ability to clearly present ideas, report work, and handle situations with confidence.
 * Be more proactive in sharing ideas, reporting progress, and collaborating with colleagues to improve teamwork.
 * Actively contribute constructive feedback and propose new initiatives to increase team effectiveness and innovation.
+
 
