@@ -49,3 +49,12 @@ pre: " <b> 4. </b> "
 
 &emsp;**Vai trò:** Người tham dự  
 
+
+### [Event 5](4.5-Event5/)  
+&emsp;**Tên sự kiện:** AWS Well-Architected Security Pillar
+
+&emsp;**Thời gian:** 08:30, ngày 29 tháng 11 năm 2025
+
+&emsp;**Địa điểm:** Tầng 26, Tòa nhà Bitexco, 02 Hai Trieu, Quận 1, TP. Hồ Chí Minh
+
+&emsp;**Vai trò:** Người tham dự  

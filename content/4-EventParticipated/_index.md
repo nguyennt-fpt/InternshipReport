@@ -50,3 +50,13 @@ pre: " <b> 4. </b> "
 
 &emsp;**Role:** Attendee  
 
+
+### [Event 5](4.5-Event5/)  
+&emsp;**Event Name:** AWS Well-Architected Security Pillar
+
+&emsp;**Date & Time:** 08:30, November 29, 2025  
+
+&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
+
+&emsp;**Role:** Attendee 
+
