@@ -31,5 +31,7 @@ pre: " <b> 1. </b> "
 
 **Week 11:** [Containerizing Node.js app, deploying with Docker Compose and practicing IaC with Terraform](1.11-week11/)
 
+**Week 12:** [Complete the remaining parts of the final project and learn basic Kubernetes](1.12-week12/)
+
 
 

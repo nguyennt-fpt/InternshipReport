@@ -6,29 +6,140 @@ chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
-âš ï¸ **LÆ°u Ã½:** CÃ¡c thÃ´ng tin dÆ°á»›i Ä‘Ã¢y chá»‰ nháº±m má»¥c Ä‘Ã­ch tham kháº£o, vui lÃ²ng **khÃ´ng sao chÃ©p nguyÃªn vÄƒn** cho bÃ i bÃ¡o cÃ¡o cá»§a báº¡n ká»ƒ cáº£ warning nÃ y.
-{{% /notice %}}
+# Xây dựng FastAPI Backend Bảo mật trên AWS Lambda với DevSecOps
 
+#### Tổng quan
 
-# Äáº£m báº£o truy cáº­p Hybrid an toÃ n Ä‘áº¿n S3 báº±ng cÃ¡ch sá»­ dá»¥ng VPC endpoint
+Đây là một **hướng dẫn triển khai từng bước** sẽ giúp bạn triển khai một **FastAPI Backend API** hoàn chỉnh chạy trên **AWS Lambda** (container-based) với pipeline CI/CD tự động hoàn toàn, tích hợp quét bảo mật, và Infrastructure as Code sử dụng Terraform.
 
-#### Tá»•ng quan
+**Repository dự án:** [https://gitlab.com/m.quang/devsecops-aws-ver2](https://gitlab.com/m.quang/devsecops-aws-ver2)
 
-**AWS PrivateLink** cung cáº¥p káº¿t ná»‘i riÃªng tÆ° Ä‘áº¿n cÃ¡c dá»‹ch vá»¥ aws tá»« VPCs hoáº·c trung tÃ¢m dá»¯ liá»‡u (on-premise) mÃ  khÃ´ng lÃ m lá»™ lÆ°u lÆ°á»£ng truy cáº­p ra ngoÃ i public internet.
+Làm theo hướng dẫn này để triển khai một ứng dụng serverless production-ready với quét bảo mật tự động, monitoring, và quản lý infrastructure.
 
-Trong bÃ i lab nÃ y, chÃºng ta sáº½ há»c cÃ¡ch táº¡o, cáº¥u hÃ¬nh, vÃ  kiá»ƒm tra VPC endpoints Ä‘á»ƒ cho phÃ©p workload cá»§a báº¡n tiáº¿p cáº­n cÃ¡c dá»‹ch vá»¥ AWS mÃ  khÃ´ng cáº§n Ä‘i qua Internet cÃ´ng cá»™ng.
+Bạn sẽ học cách:
+- Xây dựng ứng dụng **FastAPI** với kiến trúc phân lớp sạch (API → Service → Repository)
+- Đóng gói FastAPI thành **Lambda container image** sử dụng Mangum adapter
+- Thiết lập **AWS CodePipeline** với **CodeBuild** cho CI/CD tự động
+- Tích hợp quét bảo mật với **Semgrep** (SAST) và **Trivy** (container vulnerability scanning)
+- Triển khai infrastructure sử dụng **Terraform** modules
+- Lưu trữ dữ liệu trong các bảng **DynamoDB** (products, orders, users)
+- Triển khai **JWT authentication** với AWS Secrets Manager
+- Thiết lập monitoring với **CloudWatch** và cảnh báo **SNS**
 
-ChÃºng ta sáº½ táº¡o hai loáº¡i endpoints Ä‘á»ƒ truy cáº­p Ä‘áº¿n Amazon S3: gateway vpc endpoint vÃ  interface vpc endpoint. Hai loáº¡i vpc endpoints nÃ y mang Ä‘áº¿n nhiá»u lá»£i Ã­ch tÃ¹y thuá»™c vÃ o viá»‡c báº¡n truy cáº­p Ä‘áº¿n S3 tá»« mÃ´i trÆ°á»ng cloud hay tá»« trung tÃ¢m dá»¯ liá»‡u (on-premise).
-+ **Gateway** - Táº¡o gateway endpoint Ä‘á»ƒ gá»­i lÆ°u lÆ°á»£ng Ä‘áº¿n Amazon S3 hoáº·c DynamoDB using private IP addresses. Báº¡n Ä‘iá»u hÆ°á»›ng lÆ°u lÆ°á»£ng tá»« VPC cá»§a báº¡n Ä‘áº¿n gateway endpoint báº±ng cÃ¡c báº£ng Ä‘á»‹nh tuyáº¿n (route tables)
-+ **Interface** - Táº¡o interface endpoint Ä‘á»ƒ gá»­i lÆ°u lÆ°á»£ng Ä‘áº¿n cÃ¡c dá»‹ch vá»¥ Ä‘iá»ƒm cuá»‘i (endpoints) sá»­ dá»¥ng Network Load Balancer Ä‘á»ƒ phÃ¢n phá»‘i lÆ°u lÆ°á»£ng. LÆ°u lÆ°á»£ng dÃ nh cho dá»‹ch vá»¥ Ä‘iá»ƒm cuá»‘i Ä‘Æ°á»£c resolved báº±ng DNS.
+#### Kiến trúc
 
-#### Ná»™i dung
+![System Architecture](/images/5-Workshop/workshop-architecture.png)
 
-1. [Tá»•ng quan vá» workshop](5.1-Workshop-overview/)
-2. [Chuáº©n bá»‹](5.2-Prerequiste/)
-3. [Truy cáº­p Ä‘áº¿n S3 tá»« VPC](5.3-S3-vpc/)
-4. [Truy cáº­p Ä‘áº¿n S3 tá»« TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (lÃ m thÃªm)](5.5-Policy/)
-6. [Dá»n dáº¹p tÃ i nguyÃªn](5.6-Cleanup/)
+Kiến trúc được chia thành ba domain chính:
+
+1. **Domain CI/CD Pipeline**: GitLab → CodePipeline → CodeBuild (Semgrep → Docker Build → Trivy) → ECR → Terraform Deploy
+2. **Domain Application**: API Gateway HTTP API → Lambda (Container) → FastAPI → DynamoDB + Secrets Manager
+3. **Domain Monitoring**: CloudWatch Logs → CloudWatch Alarms → SNS Alerts
+
+**Luồng Request:**
+```
+User Request
+    ↓
+API Gateway (HTTP API)
+    ↓
+Lambda Function (Container Image từ ECR)
+    ↓
+Mangum (ASGI Adapter)
+    ↓
+FastAPI Application
+    ├── /auth    → JWT Authentication
+    ├── /products → Product CRUD Operations
+    └── /orders   → Order CRUD Operations
+    ↓
+DynamoDB Tables
+    ├── products (product_id, name, price, stock, category)
+    ├── orders   (order_id, user_id, products, status)
+    └── users    (user_id, email, password_hash)
+```
+
+#### Cấu trúc dự án
+
+```
+Backend-FastAPI-Docker_Build-Pipeline/
+├── backend/                    # Ứng dụng FastAPI
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── routers/        # API endpoints (auth, products, orders)
+│   │   │   ├── deps.py         # Dependency injection
+│   │   │   └── middleware.py  # Correlation ID middleware
+│   │   ├── core/               # Core configuration
+│   │   │   ├── config.py       # Environment variables
+│   │   │   ├── security.py     # JWT, password hashing
+│   │   │   └── logging.py      # Structured logging
+│   │   ├── models/             # Pydantic models
+│   │   │   ├── product.py
+│   │   │   ├── order.py
+│   │   │   └── user.py
+│   │   ├── repositories/       # Data access layer
+│   │   │   ├── ddb_products.py
+│   │   │   ├── ddb_orders.py
+│   │   │   └── ddb_users.py
+│   │   ├── services/           # Business logic layer
+│   │   │   ├── product_service.py
+│   │   │   ├── order_service.py
+│   │   │   └── auth_service.py
+│   │   ├── utils/              # Utility functions
+│   │   │   └── time.py
+│   │   ├── main.py             # FastAPI app entry point
+│   │   └── lambda_handler.py   # Lambda handler (Mangum)
+│   ├── tests/                  # Unit tests
+│   ├── Dockerfile              # Lambda container image
+│   ├── requirements.txt
+│   ├── semgrep.yml            # Security scanning rules
+│   └── trivyignore.txt        # Trivy ignore list
+├── infra/                      # Terraform Infrastructure
+│   ├── main.tf                 # Điều phối chính
+│   ├── variables.tf
+│   ├── outputs.tf
+│   ├── providers.tf
+│   ├── backend.tf
+│   └── modules/
+│       ├── dynamodb/           # DynamoDB tables
+│       ├── iam/                # IAM roles & policies
+│       ├── lambda_container/  # Lambda function
+│       ├── apigw/              # API Gateway HTTP API
+│       ├── observability/      # CloudWatch & SNS
+│       └── route53/            # Custom domain (tùy chọn)
+└── pipeline/                   # CI/CD Pipeline
+    ├── buildspec-build.yml    # Build stage (Semgrep, Docker, Trivy)
+    ├── buildspec-deploy.yml   # Deploy stage (Terraform)
+    ├── codepipeline.tf        # CodePipeline configuration
+    └── README.md
+```
+
+#### Nội dung
+
+1. [Tổng quan Workshop](5.1-Workshop-overview/)
+2. [Chuẩn bị](5.2-Prerequiste/)
+3. [Thiết lập Pipeline CI/CD](5.3-S3-vpc/)
+4. [Xây dựng FastAPI Backend](5.4-S3-onprem/)
+5. [Monitoring & Observability](5.5-Policy/)
+6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+
+#### Các dịch vụ AWS được sử dụng
+
+| Danh mục | Dịch vụ |
+| --- | --- |
+| **Compute** | AWS Lambda (Container Image) |
+| **API** | API Gateway HTTP API (v2) |
+| **Database** | Amazon DynamoDB (3 tables) |
+| **Bảo mật** | AWS Secrets Manager, IAM |
+| **CI/CD** | AWS CodePipeline, CodeBuild, Amazon ECR |
+| **Monitoring** | Amazon CloudWatch (Logs, Metrics, Alarms), SNS |
+| **DNS** | Amazon Route 53 (tùy chọn) |
+| **IaC** | Terraform |
+| **Security Scanning** | Semgrep (SAST), Trivy (Container Scan) |
+
+#### Thời gian & Chi phí ước tính
+
+| Mục | Chi tiết |
+| --- | --- |
+| **Thời gian** | 4-5 giờ |
+| **Cấp độ** | Trung cấp đến Nâng cao |
+| **Chi phí** | ~$5-10 (nếu dọn dẹp sau workshop) |
 

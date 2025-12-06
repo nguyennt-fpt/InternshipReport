@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi" class="js csstransforms3d">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=60909&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.150.0">
@@ -10,26 +10,26 @@
 />
 <meta name="author" content="thienlh@thienlu.com" />
 
-    <link rel="icon" href="http://localhost:60909/images/favicon.png" type="image/png">
+    <link rel="icon" href="http://localhost:1313/images/favicon.png" type="image/png">
 
-    <title>MÃ´ phá»ng On-premises DNS  :: Báo cáo thực tập</title>
+    <title>Load Testing với Artillery :: Báo cáo thực tập</title>
 
     
-    <link href="http://localhost:60909/css/nucleus.css?1764315889" rel="stylesheet">
-    <link href="http://localhost:60909/css/fontawesome-all.min.css?1764315889" rel="stylesheet">
-    <link href="http://localhost:60909/css/hybrid.css?1764315889" rel="stylesheet">
-    <link href="http://localhost:60909/css/featherlight.min.css?1764315889" rel="stylesheet">
-    <link href="http://localhost:60909/css/perfect-scrollbar.min.css?1764315889" rel="stylesheet">
-    <link href="http://localhost:60909/css/auto-complete.css?1764315889" rel="stylesheet">
-    <link href="http://localhost:60909/css/atom-one-dark-reasonable.css?1764315889" rel="stylesheet">
-    <link href="http://localhost:60909/css/theme.css?1764315889" rel="stylesheet">
-    <link href="http://localhost:60909/css/hugo-theme.css?1764315889" rel="stylesheet">
+    <link href="http://localhost:1313/css/nucleus.css?1765038126" rel="stylesheet">
+    <link href="http://localhost:1313/css/fontawesome-all.min.css?1765038126" rel="stylesheet">
+    <link href="http://localhost:1313/css/hybrid.css?1765038126" rel="stylesheet">
+    <link href="http://localhost:1313/css/featherlight.min.css?1765038126" rel="stylesheet">
+    <link href="http://localhost:1313/css/perfect-scrollbar.min.css?1765038126" rel="stylesheet">
+    <link href="http://localhost:1313/css/auto-complete.css?1765038126" rel="stylesheet">
+    <link href="http://localhost:1313/css/atom-one-dark-reasonable.css?1765038126" rel="stylesheet">
+    <link href="http://localhost:1313/css/theme.css?1765038126" rel="stylesheet">
+    <link href="http://localhost:1313/css/hugo-theme.css?1765038126" rel="stylesheet">
     
-    <link href="http://localhost:60909/css/theme-workshop.css?1764315889" rel="stylesheet">
+    <link href="http://localhost:1313/css/theme-workshop.css?1765038126" rel="stylesheet">
     
     
 
-    <script src="http://localhost:60909/js/jquery-3.3.1.min.js?1764315889"></script>
+    <script src="http://localhost:1313/js/jquery-3.3.1.min.js?1765038126"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -40,14 +40,14 @@
     
 
   </head>
-  <body class="" data-url="http://localhost:60909/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+  <body class="" data-url="http://localhost:1313/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
 >
    
   <div id="header-wrapper">
-    <div id="header"><a id="logo" href="http://localhost:60909/">
+    <div id="header"><a id="logo" href="http://localhost:1313/">
   <svg
     id="Layer_1"
     data-name="Layer 1"
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="http://localhost:60909/js/lunr.min.js?1764315889"></script>
-<script type="text/javascript" src="http://localhost:60909/js/auto-complete.js?1764315889"></script>
+<script type="text/javascript" src="http://localhost:1313/js/lunr.min.js?1765038126"></script>
+<script type="text/javascript" src="http://localhost:1313/js/auto-complete.js?1765038126"></script>
 <script type="text/javascript">
     
-        var baseurl = "http:\/\/localhost:60909\/\/vi";
+        var baseurl = "http:\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="http://localhost:60909/js/search.js?1764315889"></script>
+<script type="text/javascript" src="http://localhost:1313/js/search.js?1765038126"></script>
  
   </div>
 
@@ -111,7 +111,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/">
+  <a href="http://localhost:1313/vi/1-worklog/">
      <b> 1. </b> Nhật ký công việc 
     <i class="fas fa-check read-icon"></i>
     
@@ -129,7 +129,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.1-week1/">
+  <a href="http://localhost:1313/vi/1-worklog/1.1-week1/">
      <b> 1.1. </b> Worklog Tuần 1 
     <i class="fas fa-check read-icon"></i>
     
@@ -147,7 +147,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.2-week2/">
+  <a href="http://localhost:1313/vi/1-worklog/1.2-week2/">
      <b> 1.2. </b> Worklog Tuần 2 
     <i class="fas fa-check read-icon"></i>
     
@@ -165,7 +165,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.3-week3/">
+  <a href="http://localhost:1313/vi/1-worklog/1.3-week3/">
      <b> 1.3. </b> Worklog tuần 3 
     <i class="fas fa-check read-icon"></i>
     
@@ -183,7 +183,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.4-week4/">
+  <a href="http://localhost:1313/vi/1-worklog/1.4-week4/">
      <b> 1.4. </b> Worklog tuần 4 
     <i class="fas fa-check read-icon"></i>
     
@@ -201,7 +201,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.6-week6/">
+  <a href="http://localhost:1313/vi/1-worklog/1.6-week6/">
      <b> 1.6. </b> Worklog tuần 6 
     <i class="fas fa-check read-icon"></i>
     
@@ -219,7 +219,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.7-week7/">
+  <a href="http://localhost:1313/vi/1-worklog/1.7-week7/">
      <b> 1.7. </b> Worklog tuần 7 
     <i class="fas fa-check read-icon"></i>
     
@@ -237,7 +237,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.8-week8/">
+  <a href="http://localhost:1313/vi/1-worklog/1.8-week8/">
      <b> 1.8. </b> Worklog tuần 8 
     <i class="fas fa-check read-icon"></i>
     
@@ -255,7 +255,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.9-week9/">
+  <a href="http://localhost:1313/vi/1-worklog/1.9-week9/">
      <b> 1.9. </b> Worklog tuần 9 
     <i class="fas fa-check read-icon"></i>
     
@@ -273,7 +273,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.10-week10/">
+  <a href="http://localhost:1313/vi/1-worklog/1.10-week10/">
      <b> 1.10. </b> Worklog tuần 10 
     <i class="fas fa-check read-icon"></i>
     
@@ -291,8 +291,26 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.11-week11/">
+  <a href="http://localhost:1313/vi/1-worklog/1.11-week11/">
      <b> 1.11. </b> Worklog tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog tuần 12"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:1313/vi/1-worklog/1.12-week12/">
+     <b> 1.12. </b> Worklog tuần 12 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -309,7 +327,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/1-worklog/1.5-week5/">
+  <a href="http://localhost:1313/vi/1-worklog/1.5-week5/">
      
     <i class="fas fa-check read-icon"></i>
     
@@ -330,7 +348,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/2-proposal/">
+  <a href="http://localhost:1313/vi/2-proposal/">
      <b> 2. </b> Bản đề xuất 
     <i class="fas fa-check read-icon"></i>
     
@@ -347,7 +365,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/3-blogstranslated/">
+  <a href="http://localhost:1313/vi/3-blogstranslated/">
      <b> 3. </b> Các bài blogs đã dịch 
     <i class="fas fa-check read-icon"></i>
     
@@ -365,7 +383,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/3-blogstranslated/3.1-blog1/">
+  <a href="http://localhost:1313/vi/3-blogstranslated/3.1-blog1/">
      <b> 3.1. </b> Blog 1 
     <i class="fas fa-check read-icon"></i>
     
@@ -383,7 +401,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/3-blogstranslated/3.2-blog2/">
+  <a href="http://localhost:1313/vi/3-blogstranslated/3.2-blog2/">
      <b> 3.2. </b> Blog 2 
     <i class="fas fa-check read-icon"></i>
     
@@ -401,7 +419,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/3-blogstranslated/3.3-blog3/">
+  <a href="http://localhost:1313/vi/3-blogstranslated/3.3-blog3/">
      <b> 3.3. </b> Blog 3 
     <i class="fas fa-check read-icon"></i>
     
@@ -419,7 +437,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/3-blogstranslated/3.4-blog4/">
+  <a href="http://localhost:1313/vi/3-blogstranslated/3.4-blog4/">
      <b> 3.4. </b> Blog 4 
     <i class="fas fa-check read-icon"></i>
     
@@ -437,7 +455,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/3-blogstranslated/3.5-blog5/">
+  <a href="http://localhost:1313/vi/3-blogstranslated/3.5-blog5/">
      <b> 3.6. </b> Blog 5 
     <i class="fas fa-check read-icon"></i>
     
@@ -455,7 +473,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/3-blogstranslated/3.6-blog6/">
+  <a href="http://localhost:1313/vi/3-blogstranslated/3.6-blog6/">
      <b> 3.6. </b> Blog 6 
     <i class="fas fa-check read-icon"></i>
     
@@ -476,7 +494,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/4-eventparticipated/">
+  <a href="http://localhost:1313/vi/4-eventparticipated/">
      <b> 4. </b> Các events đã tham gia 
     <i class="fas fa-check read-icon"></i>
     
@@ -494,7 +512,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/4-eventparticipated/4.1-event1/">
+  <a href="http://localhost:1313/vi/4-eventparticipated/4.1-event1/">
      <b> 4.1. </b> Event 1 
     <i class="fas fa-check read-icon"></i>
     
@@ -512,7 +530,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/4-eventparticipated/4.2-event2/">
+  <a href="http://localhost:1313/vi/4-eventparticipated/4.2-event2/">
      <b> 4.2. </b> Event 2 
     <i class="fas fa-check read-icon"></i>
     
@@ -530,7 +548,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/4-eventparticipated/4.3-event3/">
+  <a href="http://localhost:1313/vi/4-eventparticipated/4.3-event3/">
      <b> 4.3. </b> Event 3 
     <i class="fas fa-check read-icon"></i>
     
@@ -548,8 +566,26 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/4-eventparticipated/4.4-event4/">
+  <a href="http://localhost:1313/vi/4-eventparticipated/4.4-event4/">
      <b> 4.4. </b> Event 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.5-event5/"
+  title="Sự kiện 5"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:1313/vi/4-eventparticipated/4.5-event5/">
+     <b> 4.5. </b> Sự kiện 5 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -569,7 +605,7 @@
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/">
+  <a href="http://localhost:1313/vi/5-workshop/">
      <b> 5. </b> Workshop 
     <i class="fas fa-check read-icon"></i>
     
@@ -580,15 +616,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.1-workshop-overview/"
-  title="Giá»›i thiá»‡u"
+  title="Quick Start: DevSecOps với FastAPI Backend"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.1-workshop-overview/">
-     <b> 5.1. </b> Giá»›i thiá»‡u 
+  <a href="http://localhost:1313/vi/5-workshop/5.1-workshop-overview/">
+     <b> 5.1. </b> Quick Start: DevSecOps với FastAPI Backend 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -598,15 +634,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.2-prerequiste/"
-  title="CÃ¡c bÆ°á»›c chuáº©n bá»‹"
+  title="Điều kiện tiên quyết"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.2-prerequiste/">
-     <b> 5.2. </b> CÃ¡c bÆ°á»›c chuáº©n bá»‹ 
+  <a href="http://localhost:1313/vi/5-workshop/5.2-prerequiste/">
+     <b> 5.2. </b> Điều kiện tiên quyết 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -616,15 +652,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.3-s3-vpc/"
-  title="Truy cáº­p S3 tá»« VPC"
+  title="Thiết lập GitLab CI/CD Pipeline"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.3-s3-vpc/">
-     <b> 5.3. </b> Truy cáº­p S3 tá»« VPC 
+  <a href="http://localhost:1313/vi/5-workshop/5.3-s3-vpc/">
+     <b> 5.3. </b> Thiết lập GitLab CI/CD Pipeline 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -634,15 +670,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
-  title="Táº¡o má»™t Gateway Endpoint"
+  title="Thiết lập GitLab CI/CD Pipeline"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
-     <b> 5.3.1 </b> Táº¡o má»™t Gateway Endpoint 
+  <a href="http://localhost:1313/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
+     <b> 5.3.1. </b> Thiết lập GitLab CI/CD Pipeline 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -652,15 +688,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
-  title="Kiá»ƒm tra Gateway Endpoint"
+  title="DevSecOps Security Testing &amp; Configuration"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
-     <b> 5.3.2 </b> Kiá»ƒm tra Gateway Endpoint 
+  <a href="http://localhost:1313/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+     <b> 5.3.2. </b> DevSecOps Security Testing &amp; Configuration 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -674,15 +710,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.4-s3-onprem/"
-  title="Truy cáº­p S3 tá»« mÃ´i trÆ°á»ng truyá»n thá»‘ng"
+  title="Deploy FastAPI Backend"
   class="dd-item 
         parent
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.4-s3-onprem/">
-     <b> 5.4. </b> Truy cáº­p S3 tá»« mÃ´i trÆ°á»ng truyá»n thá»‘ng 
+  <a href="http://localhost:1313/vi/5-workshop/5.4-s3-onprem/">
+     <b> 5.4. </b> Deploy FastAPI Backend 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -692,15 +728,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
-  title="Chuáº©n bá»‹ tÃ i nguyÃªn"
+  title="Cấu trúc ứng dụng FastAPI"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/">
-     <b> 5.4.1 </b> Chuáº©n bá»‹ tÃ i nguyÃªn 
+  <a href="http://localhost:1313/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/">
+     <b> 5.4.1. </b> Cấu trúc ứng dụng FastAPI 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -710,15 +746,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
-  title="Táº¡o má»™t S3 Interface endpoint"
+  title="Triển khai Infrastructure với Terraform"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
-     <b> 5.4.2 </b> Táº¡o má»™t S3 Interface endpoint 
+  <a href="http://localhost:1313/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
+     <b> 5.4.2. </b> Triển khai Infrastructure với Terraform 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -728,15 +764,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
-  title="Kiá»ƒm tra Interface Endpoint"
+  title="Kiểm thử API"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
-     <b> 5.4.3 </b> Kiá»ƒm tra Interface Endpoint 
+  <a href="http://localhost:1313/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
+     <b> 5.4.3. </b> Kiểm thử API 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -746,15 +782,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
-  title="MÃ´ phá»ng On-premises DNS "
+  title="Load Testing với Artillery"
   class="dd-item 
         
         active
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
-     <b> 5.4.4 </b> MÃ´ phá»ng On-premises DNS  
+  <a href="http://localhost:1313/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+     <b> 5.4.4. </b> Load Testing với Artillery 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -768,15 +804,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.5-policy/"
-  title="VPC Endpoint Policies"
+  title="Cấu hình Thủ công: Monitoring &amp; Security"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.5-policy/">
-     <b> 5.5 </b> VPC Endpoint Policies 
+  <a href="http://localhost:1313/vi/5-workshop/5.5-policy/">
+     <b> 5.5. </b> Cấu hình Thủ công: Monitoring &amp; Security 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -786,15 +822,15 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.6-cleanup/"
-  title="Dá»n dáº¹p tÃ i nguyÃªn"
+  title="Dọn dẹp tài nguyên"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:60909/vi/5-workshop/5.6-cleanup/">
-     <b> 5.6. </b> Dá»n dáº¹p tÃ i nguyÃªn 
+  <a href="http://localhost:1313/vi/5-workshop/5.6-cleanup/">
+     <b> 5.6. </b> Dọn dẹp tài nguyên 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -803,6 +839,40 @@
      
   </ul>
   
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự đánh giá"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:1313/vi/6-self-evaluation/">
+     <b> 6. </b> Tự đánh giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia sẻ, đóng góp ý kiến"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:1313/vi/7-feedback/">
+     <b> 7. </b> Chia sẻ, đóng góp ý kiến 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
 </li>
     
     </ul>
@@ -835,14 +905,14 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:60909/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+                  value="http://localhost:1313/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
                 >
                   English
                 </option>
                             
                 <option
                   id="vi"
-                  value="http://localhost:60909/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+                  value="http://localhost:1313/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
                   selected
                 >
                   Tiếng Việt
@@ -960,7 +1030,7 @@
             
           
           
-            <a href='http://localhost:60909/vi/'>Báo cáo thực tập </a> > <a href='http://localhost:60909/vi/5-workshop/'>Workshop</a> > <a href='http://localhost:60909/vi/5-workshop/5.4-s3-onprem/'>Truy cáº­p S3 tá»« mÃ´i trÆ°á»ng truyá»n thá»‘ng</a> > MÃ´ phá»ng On-premises DNS 
+            <a href='http://localhost:1313/vi/'>Báo cáo thực tập </a> > <a href='http://localhost:1313/vi/5-workshop/'>Workshop</a> > <a href='http://localhost:1313/vi/5-workshop/5.4-s3-onprem/'>Deploy FastAPI Backend</a> > Load Testing với Artillery
           
         
           
@@ -976,9 +1046,19 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#load-testing-với-artillery">Load Testing với Artillery</a>
       <ul>
-        <li></li>
+        <li><a href="#yêu-cầu">Yêu cầu</a></li>
+        <li><a href="#bước-1-lấy-api-url-và-token">Bước 1: Lấy API URL và Token</a></li>
+        <li><a href="#bước-2-tạo-cấu-hình-load-test">Bước 2: Tạo Cấu hình Load Test</a></li>
+        <li><a href="#bước-3-chạy-load-test">Bước 3: Chạy Load Test</a></li>
+        <li><a href="#bước-4-phân-tích-kết-quả">Bước 4: Phân tích Kết quả</a></li>
+        <li><a href="#bước-5-tạo-html-report">Bước 5: Tạo HTML Report</a></li>
+        <li><a href="#cấu-hình-load-test-nâng-cao">Cấu hình Load Test Nâng cao</a></li>
+        <li><a href="#giám-sát-trong-khi-load-test">Giám sát Trong Khi Load Test</a></li>
+        <li><a href="#performance-benchmarks">Performance Benchmarks</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
       </ul>
     </li>
   </ul>
@@ -997,7 +1077,7 @@
           
             <h1>
               
-              MÃ´ phá»ng On-premises DNS 
+              Load Testing với Artillery
             </h1>
           
 
@@ -1005,112 +1085,243 @@
 
 
 
-	<p>AWS PrivateLink endpoint cÃ³ má»™t Ä‘á»‹a chá»‰ IP cá»‘ Ä‘á»‹nh trong tá»«ng AZ nÆ¡i chÃºng Ä‘Æ°á»£c triá»ƒn khai, trong suá»‘t thá»i gian tá»“n táº¡i cá»§a endpoint (cho Ä‘áº¿n khi endpoint bá»‹ xÃ³a). CÃ¡c Ä‘á»‹a chá»‰ IP nÃ y Ä‘Æ°á»£c gáº¯n vÃ o Elastic network interface (ENI). AWS khuyáº¿n nghá»‹ sá»­ dá»¥ng DNS Ä‘á»ƒ resolve Ä‘á»‹a chá»‰ IP cho endpoint Ä‘á»ƒ cÃ¡c á»©ng dá»¥ng downstream sá»­ dá»¥ng Ä‘á»‹a chá»‰ IP má»›i nháº¥t khi ENIs Ä‘Æ°á»£c thÃªm vÃ o AZ má»›i hoáº·c bá»‹ xÃ³a theo thá»i gian.</p>
-<p>Trong pháº§n nÃ y, báº¡n sáº½ táº¡o má»™t quy táº¯c chuyá»ƒn tiáº¿p (forwarding rule) Ä‘á»ƒ gá»­i cÃ¡c yÃªu cáº§u resolve DNS tá»« mÃ´i trÆ°á»ng truyá»n thá»‘ng (mÃ´ phá»ng) Ä‘áº¿n Private Hosted Zone trÃªn Route 53. Pháº§n nÃ y táº­n dá»¥ng cÆ¡ sá»Ÿ háº¡ táº§ng do CloudFormation triá»ƒn khai trong pháº§n Chuáº©n bá»‹ mÃ´i trÆ°á»ng.</p>
-<h4 id="táºo-dns-alias-records-cho-interface-endpoint">Táº¡o DNS Alias Records cho Interface endpoint</h4>
-<ol>
-<li>Click link Ä‘á»ƒ Ä‘i Ä‘áº¿n <a href="https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones?region=us-east-1">Route 53 management console</a> (Hosted Zones section).  Máº«u CloudFormation mÃ  báº¡n triá»ƒn khai trong pháº§n Chuáº©n bá»‹ mÃ´i trÆ°á»ng Ä‘Ã£ táº¡o Private Hosted Zone nÃ y. Nháº¥p vÃ o tÃªn cá»§a Private Hosted Zone, s3.us-east-1.amazonaws.com:</li>
-</ol>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/hosted-zone.png" alt="hosted zone"></p>
-<ol start="2">
-<li>Táº¡o 1 record má»›i trong Private Hosted Zone:</li>
-</ol>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/create-record1.png" alt="Create record"></p>
+	<h2 id="load-testing-với-artillery">Load Testing với Artillery</h2>
+<p>Trong phần này, bạn sẽ thực hiện load testing trên API đã deploy sử dụng Artillery để mô phỏng user traffic và đo lường hiệu suất.</p>
+<h3 id="yêu-cầu">Yêu cầu</h3>
+<p>Cài đặt Artillery:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g artillery
+</span></span></code></pre></div><p>Hoặc sử dụng Docker:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -it --rm -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>:/work artilleryio/artillery:latest
+</span></span></code></pre></div><h3 id="bước-1-lấy-api-url-và-token">Bước 1: Lấy API URL và Token</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Lấy API URL</span>
+</span></span><span style="display:flex;"><span>cd Backend-FastAPI-Docker_Build-Pipeline/infra
+</span></span><span style="display:flex;"><span>API_URL<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>terraform output -raw api_url<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Lấy admin token (bạn cần login trước)</span>
+</span></span><span style="display:flex;"><span>TOKEN<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;YOUR_ADMIN_TOKEN_HERE&#34;</span>
+</span></span></code></pre></div><p><strong>Lưu ý:</strong> Thay thế bằng admin token thực tế của bạn từ endpoint <code>/auth/login</code>.</p>
+<h3 id="bước-2-tạo-cấu-hình-load-test">Bước 2: Tạo Cấu hình Load Test</h3>
+<p>Tạo <code>load-test.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">target</span>: <span style="color:#e6db74">&#34;https://YOUR_API_ID.execute-api.ap-southeast-1.amazonaws.com&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">phases</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">duration</span>: <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">arrivalRate</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Warm up&#34;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">duration</span>: <span style="color:#ae81ff">120</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">arrivalRate</span>: <span style="color:#ae81ff">50</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Ramp up&#34;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">duration</span>: <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">arrivalRate</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Cool down&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">defaults</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">headers</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Authorization</span>: <span style="color:#e6db74">&#34;Bearer YOUR_ADMIN_TOKEN_HERE&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Content-Type</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">scenarios</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Get products&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">70</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">flow</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">get</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/products&#34;</span>
+</span></span><span style="display:flex;"><span>          
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Create product&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">flow</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">post</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/products&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">json</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Load test product {{ $randomString() }}&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">price</span>: <span style="color:#ae81ff">29.99</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">stock</span>: <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">category</span>: <span style="color:#e6db74">&#34;electronics&#34;</span>
+</span></span></code></pre></div><p><strong>Quan trọng:</strong> Thay thế:</p>
 <ul>
-<li>Giá»¯ nguyÃªn Record name vÃ  record type</li>
-<li>Alias Button: click Ä‘á»ƒ enable</li>
-<li>Route traffic to: Alias to VPC Endpoint</li>
-<li>Region: US East (N. Virginia) [us-east-1]</li>
-<li>Chá»n endpoint: Paste tÃªn (Regional VPC Endpoint DNS) báº¡n Ä‘Ã£ lÆ°u láº¡i á»Ÿ pháº§n 4.3</li>
+<li><code>target</code> bằng API Gateway URL thực tế của bạn</li>
+<li>Header <code>Authorization</code> bằng admin token của bạn</li>
 </ul>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/record1.png" alt="record1"></p>
-<ol start="3">
-<li>Click Add another record, vÃ  add 1 cÃ¡i record thá»© 2 sá»­ dá»¥ng nhá»¯ng thÃ´ng sá»‘ sau:</li>
-</ol>
+<h3 id="bước-3-chạy-load-test">Bước 3: Chạy Load Test</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>artillery run load-test.yml
+</span></span></code></pre></div><h3 id="bước-4-phân-tích-kết-quả">Bước 4: Phân tích Kết quả</h3>
+<p>Artillery sẽ xuất thống kê như:</p>
+<pre tabindex="0"><code>Summary report @ 14:30:00(+0000) 2024-01-01
+  Scenarios launched:  1000
+  Scenarios completed: 1000
+  Requests completed:  2000
+  Mean response/sec:   45.2
+  Response time (msec):
+    min: 45
+    max: 1200
+    median: 120
+    p95: 350
+    p99: 800
+  Scenario counts:
+    Get products: 700 (70%)
+    Create product: 300 (30%)
+  Codes:
+    200: 1950
+    201: 50
+    500: 0
+</code></pre><h3 id="bước-5-tạo-html-report">Bước 5: Tạo HTML Report</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>artillery run --output report.json load-test.yml
+</span></span><span style="display:flex;"><span>artillery report report.json
+</span></span></code></pre></div><p>Điều này tạo ra một HTML report với:</p>
 <ul>
-<li>Record name: *.</li>
-<li>Record type: giá»¯ giÃ¡ trá»‹ default (type A)</li>
-<li>Alias Button: Click Ä‘á»ƒ enable</li>
-<li>Route traffic to: Alias to VPC Endpoint</li>
-<li>Region: US East (N. Virginia) [us-east-1]</li>
-<li>Chá»n endpoint: Paste tÃªn (Regional VPC Endpoint DNS) báº¡n Ä‘Ã£ lÆ°u láº¡i á»Ÿ pháº§n 4.3</li>
-<li>Click <strong>Create records</strong></li>
+<li>Biểu đồ response time</li>
+<li>Biểu đồ request rate</li>
+<li>Error rates</li>
+<li>Phân tích scenario</li>
 </ul>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/record2.png" alt="record 2"></p>
-<p>Record má»›i xuáº¥t hiá»‡n trÃªn giao diá»‡n Route 53.</p>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/result.png" alt="result"></p>
-<h4 id="táºo-mát-resolver-forwarding-rule">Táº¡o má»™t Resolver Forwarding Rule</h4>
-<p><strong>Route 53 Resolver Forwarding Rules</strong> cho phÃ©p báº¡n chuyá»ƒn tiáº¿p cÃ¡c DNS queries tá»« VPC cá»§a báº¡n Ä‘áº¿n cÃ¡c nguá»“n khÃ¡c Ä‘á»ƒ resolve name. BÃªn ngoÃ i mÃ´i trÆ°á»ng workshop, báº¡n cÃ³ thá»ƒ sá»­ dá»¥ng tÃ­nh nÄƒng nÃ y Ä‘á»ƒ chuyá»ƒn tiáº¿p cÃ¡c DNS queries tá»« VPC cá»§a báº¡n Ä‘áº¿n cÃ¡c mÃ¡y chá»§ DNS cháº¡y trÃªn on-premises. Trong pháº§n nÃ y, báº¡n sáº½ mÃ´ phá»ng má»™t on-premises conditional forwarder báº±ng cÃ¡ch táº¡o má»™t forwarding rule Ä‘á»ƒ chuyá»ƒn tiáº¿p cÃ¡c DNS queries for Amazon S3 Ä‘áº¿n má»™t Private Hosted Zone cháº¡y trong &ldquo;VPC Cloud&rdquo; Ä‘á»ƒ resolve PrivateLink interface endpoint regional DNS name.</p>
+<p><img src="http://localhost:1313/images/5-Workshop/5.4-Deploy-FastAPI-Backend/5.4.4-Load%20Testing-with-Artillery/load-test.png" alt="Load Test Results"></p>
+<h3 id="cấu-hình-load-test-nâng-cao">Cấu hình Load Test Nâng cao</h3>
+<p>Để test thực tế hơn:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">target</span>: <span style="color:#e6db74">&#34;https://YOUR_API_ID.execute-api.ap-southeast-1.amazonaws.com&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">phases</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">duration</span>: <span style="color:#ae81ff">120</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">arrivalRate</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Warm up&#34;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">duration</span>: <span style="color:#ae81ff">300</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">arrivalRate</span>: <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Sustained load&#34;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">duration</span>: <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">arrivalRate</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Cool down&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">defaults</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">headers</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Authorization</span>: <span style="color:#e6db74">&#34;Bearer YOUR_TOKEN&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Content-Type</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">processor</span>: <span style="color:#e6db74">&#34;./processor.js&#34;</span>  <span style="color:#75715e"># Custom processor cho dynamic data</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">scenarios</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Product browsing&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">flow</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">get</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/products&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">think</span>: <span style="color:#ae81ff">2</span>  <span style="color:#75715e"># Đợi 2 giây</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">get</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/products?category=electronics&#34;</span>
+</span></span><span style="display:flex;"><span>          
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Product management&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">flow</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">post</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/products&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">json</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Product {{ $randomString() }}&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">price</span>: {{ <span style="color:#ae81ff">$randomNumber(10, 1000) }}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">stock</span>: {{ <span style="color:#ae81ff">$randomNumber(1, 100) }}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">category</span>: <span style="color:#e6db74">&#34;{{ $pick([&#39;electronics&#39;, &#39;clothing&#39;, &#39;books&#39;]) }}&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">think</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">get</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/products&#34;</span>
+</span></span><span style="display:flex;"><span>          
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Order flow&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">flow</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">get</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/products&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">post</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/orders&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">json</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">items</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">product_id</span>: <span style="color:#e6db74">&#34;{{ $pick([&#39;id1&#39;, &#39;id2&#39;, &#39;id3&#39;]) }}&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">quantity</span>: {{ <span style="color:#ae81ff">$randomNumber(1, 5) }}</span>
+</span></span></code></pre></div><h3 id="giám-sát-trong-khi-load-test">Giám sát Trong Khi Load Test</h3>
+<h4 id="cloudwatch-metrics">CloudWatch Metrics</h4>
 <ol>
-<li>
-<p>Tá»« giao diá»‡n  <strong>Route 53</strong>, chá»n <strong>Inbound endpoints</strong> trÃªn thanh bÃªn trÃ¡i</p>
+<li>Điều hướng đến <strong>CloudWatch</strong> → <strong>Metrics</strong> → <strong>AWS/Lambda</strong></li>
+<li>Chọn <code>fastapi-lambda-fn</code></li>
+<li>Giám sát:
+<ul>
+<li><strong>Invocations</strong>: Số lượng requests</li>
+<li><strong>Duration</strong>: Response time</li>
+<li><strong>Errors</strong>: Error rate</li>
+<li><strong>Throttles</strong>: Requests bị throttle</li>
+</ul>
 </li>
-<li>
-<p>Trong giao diá»‡n <strong>Inbound endpoint</strong>, Chá»n ID cá»§a Inbound endpoint.</p>
-</li>
 </ol>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/route53-1.png" alt="Inbound endpoint"></p>
-<ol start="3">
-<li>Sao chÃ©p 2 Ä‘á»‹a chá»‰ IP trong danh sÃ¡ch vÃ o trÃ¬nh chá»‰nh sá»­a.</li>
-</ol>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/route53-2.png" alt="Ip addresses"></p>
-<ol start="4">
-<li>Tá»« giao diá»‡n Route 53, chá»n  <strong>Resolver</strong> &gt; <strong>Rules</strong> vÃ  chá»n <strong>Create rule</strong></li>
-</ol>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/route53-3.png" alt="Ip addresses"></p>
-<ol start="5">
-<li>Trong giao diá»‡n <strong>Create rule</strong></li>
-</ol>
+<h4 id="cloudwatch-logs">CloudWatch Logs</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Xem logs real-time</span>
+</span></span><span style="display:flex;"><span>aws logs tail /aws/lambda/fastapi-lambda-fn --follow --region ap-southeast-1
+</span></span></code></pre></div><h3 id="performance-benchmarks">Performance Benchmarks</h3>
+<p>Hiệu suất mong đợi cho Lambda container:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Metric</th>
+          <th>Target</th>
+          <th>Ghi chú</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>P50 (median)</strong></td>
+          <td>&lt; 200ms</td>
+          <td>Hầu hết requests</td>
+      </tr>
+      <tr>
+          <td><strong>P95</strong></td>
+          <td>&lt; 500ms</td>
+          <td>95% requests</td>
+      </tr>
+      <tr>
+          <td><strong>P99</strong></td>
+          <td>&lt; 1000ms</td>
+          <td>99% requests</td>
+      </tr>
+      <tr>
+          <td><strong>Error Rate</strong></td>
+          <td>&lt; 0.1%</td>
+          <td>Rất ít lỗi</td>
+      </tr>
+      <tr>
+          <td><strong>Throughput</strong></td>
+          <td>50+ req/s</td>
+          <td>Phụ thuộc vào concurrency</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<h4 id="response-time-cao">Response Time Cao</h4>
 <ul>
-<li>Name: myS3Rule</li>
-<li>Rule type: Forward</li>
-<li>Domain name: s3.us-east-1.amazonaws.com</li>
+<li>Kiểm tra Lambda cold starts</li>
+<li>Giám sát DynamoDB throttling</li>
+<li>Xem lại CloudWatch metrics</li>
+<li>Kiểm tra API Gateway latency</li>
 </ul>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/route53-4.png" alt="create rule"></p>
+<h4 id="error-rate-cao">Error Rate Cao</h4>
 <ul>
-<li>VPC: VPC On-prem</li>
-<li>Outbound endpoint: VPCOnpremOutboundEndpoint</li>
+<li>Kiểm tra CloudWatch logs cho errors</li>
+<li>Xác minh DynamoDB table capacity</li>
+<li>Kiểm tra Lambda timeout settings</li>
+<li>Xem lại API Gateway limits</li>
 </ul>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/route53-5.png" alt="create rule"></p>
+<h4 id="throttling">Throttling</h4>
 <ul>
-<li>Target IP Addresses: Ä‘iá»n cáº£ hai IP báº¡n Ä‘Ã£ lÆ°u trá»¯ trÃªn trÃ¬nh soáº¡n tháº£o (inbound endpoint addresses) vÃ  sau Ä‘Ã³ chá»n <strong>Submit</strong></li>
+<li>Tăng Lambda concurrency limit</li>
+<li>Kiểm tra DynamoDB on-demand capacity</li>
+<li>Xem lại API Gateway throttling settings</li>
 </ul>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/route53-6.png" alt="create rule"></p>
-<p>Báº¡n Ä‘Ã£ táº¡o thÃ nh cÃ´ng resolver forwarding rule.</p>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/route53-7.png" alt="create rule"></p>
-<h4 id="kiáƒm-tra-on-premises-dns-mã-pháng">Kiá»ƒm tra on-premises DNS mÃ´ phá»ng.</h4>
+<h3 id="best-practices">Best Practices</h3>
 <ol>
-<li>Káº¿t ná»‘i Ä‘áº¿n <strong>Test-Interface-Endpoint EC2 instance</strong> vá»›i <strong>Session Manager</strong></li>
+<li><strong>Bắt đầu nhỏ</strong>: Bắt đầu với arrival rate thấp và tăng dần</li>
+<li><strong>Giám sát Resources</strong>: Xem CloudWatch metrics trong khi test</li>
+<li><strong>Test Scenarios thực tế</strong>: Kết hợp read và write operations</li>
+<li><strong>Sử dụng Correlation IDs</strong>: Track requests qua logs</li>
+<li><strong>Test Error Handling</strong>: Bao gồm negative test cases</li>
 </ol>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/test1.png" alt="create rule"></p>
-<ol start="2">
-<li>Kiá»ƒm tra DNS resolution. Lá»‡nh dig sáº½ tráº£ vá» Ä‘á»‹a chá»‰ IP Ä‘Æ°á»£c gÃ¡n cho VPC endpoint interface Ä‘ang cháº¡y trÃªn VPC (Ä‘á»‹a chá»‰ IP cá»§a báº¡n sáº½ khÃ¡c):</li>
-</ol>
-<pre tabindex="0"><code>dig +short s3.us-east-1.amazonaws.com 
-</code></pre>
+
 <div
-  class="notices note"
+  class="notices tip"
   
 >
-  <p>CÃ¡c Ä‘á»‹a chá»‰ IP Ä‘Æ°á»£c tráº£ vá» lÃ  cÃ¡c Ä‘á»‹a chá»‰ IP VPC enpoint, KHÃ”NG pháº£i lÃ  cÃ¡c Ä‘á»‹a chá»‰ IP Resolver mÃ  báº¡n Ä‘Ã£ dÃ¡n tá»« trÃ¬nh chá»‰nh sá»­a vÄƒn báº£n cá»§a mÃ¬nh. CÃ¡c Ä‘á»‹a chá»‰ IP cá»§a  Resolver endpoint  vÃ   VPC endpoin trÃ´ng giá»‘ng nhau vÃ¬ chÃºng Ä‘á»u tá»« khá»‘i CIDR VPC Cloud.</p>
+  <p>Chạy load tests trong giờ off-peak và giám sát AWS costs. Load testing có thể tạo ra traffic đáng kể và phát sinh chi phí.</p>
 
 </div>
 
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/dig.png" alt="create rule"></p>
-<ol start="3">
-<li>Truy cáº­p vÃ o menu VPC (pháº§n Endpoints), chá»n S3 interface endpoint. Nháº¥p vÃ o tab Subnets vÃ  xÃ¡c nháº­n ráº±ng cÃ¡c Ä‘á»‹a chá»‰ IP Ä‘Æ°á»£c tráº£ vá» bá»Ÿi lá»‡nh Dig khá»›p vá»›i VPC endpoint:</li>
-</ol>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/subnet.png" alt="create rule"></p>
-<ol start="4">
-<li>HÃ£y quay láº¡i shell cá»§a báº¡n vÃ  sá»­ dá»¥ng AWS CLI Ä‘á»ƒ kiá»ƒm tra danh sÃ¡ch cÃ¡c bucket S3 cá»§a báº¡n:</li>
-</ol>
-<pre tabindex="0"><code>aws s3 ls --endpoint-url https://s3.us-east-1.amazonaws.com
-</code></pre><p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/endpoint.png" alt="create rule"></p>
-<ol start="5">
-<li>Káº¿t thÃºc phiÃªn lÃ m viá»‡c cá»§a Session Manager cá»§a báº¡n:</li>
-</ol>
-<p><img src="http://localhost:60909/images/5-Workshop/5.4-S3-onprem/terminal.png" alt="create rule"></p>
-<p>Trong pháº§n nÃ y, báº¡n Ä‘Ã£ táº¡o má»™t  <strong>Interface Endpoint</strong>  cho Amazon S3. Äiá»ƒm cuá»‘i nÃ y cÃ³ thá»ƒ Ä‘Æ°á»£c truy cáº­p tá»« on-premises thÃ´ng qua Site-to-Site VPN hoáº·c AWS Direct Connect. CÃ¡c Ä‘iá»ƒm cuá»‘i Route 53 Resolver outbound giáº£ láº­p chuyá»ƒn tiáº¿p cÃ¡c yÃªu cáº§u DNS tá»« on-premises Ä‘áº¿n má»™t Private Hosted Zone Ä‘ang cháº¡y trÃªn Ä‘Ã¡m mÃ¢y. CÃ¡c Ä‘iá»ƒm cuá»‘i Route 53 inbound nháº­n yÃªu cáº§u giáº£i quyáº¿t vÃ  tráº£ vá» má»™t pháº£n há»“i chá»©a Ä‘á»‹a chá»‰ IP cá»§a  <strong>Interface Endpoint</strong>  VPC. Sá»­ dá»¥ng DNS Ä‘á»ƒ giáº£i quyáº¿t cÃ¡c Ä‘á»‹a chá»‰ IP cá»§a Ä‘iá»ƒm cuá»‘i cung cáº¥p tÃ­nh sáºµn sÃ ng cao trong trÆ°á»ng há»£p má»™t Availability Zone gáº·p sá»± cá»‘.</p>
 
 
 
@@ -1340,9 +1551,6 @@
             
         
                     
-            
-        
-                    
                         
             
             
@@ -1359,34 +1567,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -1402,73 +1582,6 @@
                     
                     
 
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
             
         
@@ -1552,32 +1665,10 @@
             
         
                     
-            
-        
-                    
                         
             
             
                 
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1606,6 +1697,9 @@
             
         
                     
+            
+        
+                    
                         
             
             
@@ -1620,6 +1714,54 @@
                     
                     
 
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
                         
             
@@ -1717,6 +1859,107 @@
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -1777,6 +2020,38 @@
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
@@ -1790,10 +2065,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="http://localhost:60909/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/" title="Kiá»ƒm tra Interface Endpoint"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="http://localhost:1313/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/" title="Kiểm thử API"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="http://localhost:60909/vi/5-workshop/5.5-policy/" title="VPC Endpoint Policies" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="http://localhost:1313/vi/5-workshop/5.5-policy/" title="Cấu hình Thủ công: Monitoring &amp; Security" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1803,19 +2078,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="http://localhost:60909/js/clipboard.min.js?1764315889"></script>
-    <script src="http://localhost:60909/js/perfect-scrollbar.min.js?1764315889"></script>
-    <script src="http://localhost:60909/js/perfect-scrollbar.jquery.min.js?1764315889"></script>
-    <script src="http://localhost:60909/js/jquery.sticky.js?1764315889"></script>
-    <script src="http://localhost:60909/js/featherlight.min.js?1764315889"></script>
-    <script src="http://localhost:60909/js/highlight.pack.js?1764315889"></script>
+    <script src="http://localhost:1313/js/clipboard.min.js?1765038126"></script>
+    <script src="http://localhost:1313/js/perfect-scrollbar.min.js?1765038126"></script>
+    <script src="http://localhost:1313/js/perfect-scrollbar.jquery.min.js?1765038126"></script>
+    <script src="http://localhost:1313/js/jquery.sticky.js?1765038126"></script>
+    <script src="http://localhost:1313/js/featherlight.min.js?1765038126"></script>
+    <script src="http://localhost:1313/js/highlight.pack.js?1765038126"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="http://localhost:60909/js/modernizr.custom-3.6.0.js?1764315889"></script>
-    <script src="http://localhost:60909/js/learn.js?1764315889"></script>
-    <script src="http://localhost:60909/js/hugo-learn.js?1764315889"></script>
+    <script src="http://localhost:1313/js/modernizr.custom-3.6.0.js?1765038126"></script>
+    <script src="http://localhost:1313/js/learn.js?1765038126"></script>
+    <script src="http://localhost:1313/js/hugo-learn.js?1765038126"></script>
 
-    <link href="http://localhost:60909/mermaid/mermaid.css?1764315889" rel="stylesheet" />
-    <script src="http://localhost:60909/mermaid/mermaid.js?1764315889"></script>
+    <link href="http://localhost:1313/mermaid/mermaid.css?1765038126" rel="stylesheet" />
+    <script src="http://localhost:1313/mermaid/mermaid.js?1765038126"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

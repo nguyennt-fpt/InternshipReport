@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-During my internship at **Amazon Web Services Vietnam** from **08-09-2025** to **[end date]**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
+During my internship at **Amazon Web Services Vietnam** from **08-09-2025** to **08-12-2025**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
 I participated in the deployment of a secure serverless application on AWS, featuring a fully automated CI/CD pipeline with integrated security scanning, infrastructure as code, and centralized monitoring. Through this project, I improved my skills in cloud architecture design, DevOps automation, security analysis, infrastructure provisioning with Terraform, system integration, and professional communication.  
 
 In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.

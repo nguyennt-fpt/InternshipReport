@@ -18,9 +18,10 @@ pre: " <b> 4.3. </b> "
 
 ### Speakers
 
-- **AWS GenAI Specialist Team**  
-- **AWS Solutions Architects**  
-- **Guest AI Practitioners from industry**  
+- **Danh Hoang Hieu Nghi** - AI Engineer, Renova Cloud
+- **Dinh Le Hoang Anh** - Cloud Engineer Trainee, FCJ
+- **Lam Tuan Kiet** - Sr DevOps Engineer, Fpt Software
+- **Truong Quang Tinh** - Platform Engineer, TymeX
 
 ### Key Highlights
 

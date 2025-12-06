@@ -1,96 +1,206 @@
 ﻿---
-title : "Test the Gateway Endpoint"
+title: "DevSecOps Security Testing & Configuration"
 date: "2024-01-01" 
-weight : 2
-chapter : false
-pre : " <b> 5.3.2 </b> "
+weight: 2
+chapter: false
+pre: " <b> 5.3.2. </b> "
 ---
 
-#### Create S3 bucket
+## DevSecOps Security Testing & Configuration
 
-1. Navigate to **S3 management console**
-2. In the Bucket console, choose **Create bucket**
+This section focuses on **security testing** and **manual configuration** of security scanning tools for the FastAPI Backend. You will learn how to configure and test Semgrep, Trivy, and ECR scanning manually.
 
-![Create bucket](/images/5-Workshop/5.3-S3-vpc/create-bucket.png)
+### DevSecOps Testing Overview
 
-3. In **the Create bucket console**
-+ **Name the bucket**: choose a name that hasn't been given to any bucket globally (hint: lab number and your name)
+The FastAPI Backend implements **defense-in-depth** security through multiple testing layers:
 
-![Bucket name](/images/5-Workshop/5.3-S3-vpc/bucket-name.png)
+| Layer | Tool | Type | Purpose |
+|-------|------|------|---------|
+| **Code** | Semgrep | SAST | Static code analysis |
+| **Dependencies** | Trivy FS | Dependency Scan | Scan filesystem for vulnerabilities |
+| **Container** | Trivy Image | Container Scan | Scan Docker image |
+| **Registry** | ECR Scan | Image Scan | Automatic scan on push |
 
-+ Leave other fields as they are (default)
-+ Scroll down and choose **Create bucket**
+### Step 1: Manual Semgrep Configuration & Testing
 
-![Create](/images/5-Workshop/5.3-S3-vpc/create-button.png) 
+#### Install Semgrep
 
-+ Successfully create S3 bucket.
+```bash
+# Install Semgrep
+pip install semgrep
 
-![Success](/images/5-Workshop/5.3-S3-vpc/bucket-success.png)
+# Or using Docker
+docker pull returntocorp/semgrep
+```
 
-#### Connect to EC2 with session manager
+#### Configure Custom Rules
 
-+ For this workshop, you will use **AWS Session Manager** to access several **EC2 instances**. **Session Manager** is a fully managed **AWS Systems Manager** capability that allows you to manage your **Amazon EC2 instances**  and on-premises virtual machines (VMs) through an interactive one-click browser-based shell. Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys.
+Edit `Backend-FastAPI-Docker_Build-Pipeline/backend/semgrep.yml`:
 
-+ First cloud journey [Lab](https://000058.awsstudygroup.com/1-introduce/) for indepth understanding of Session manager.
+```yaml
+rules:
+  - id: jwt-hardcoded-secret
+    message: Avoid hardcoding JWT secrets; use Secrets Manager/env.
+    severity: ERROR
+    languages: [python]
+    pattern: |
+      jwt.encode($P, $S, ...)
+    metavariable-pattern:
+      metavariable: $S
+      pattern: "'$SECRET'"
+      
+  - id: fastapi-debug
+    message: Do not run uvicorn with reload or debug in production.
+    severity: WARNING
+    languages: [python]
+    pattern-either:
+      - pattern: uvicorn.run(..., reload=True, ...)
+      - pattern: uvicorn.run(..., debug=True, ...)
+```
 
-1. In the **AWS Management Console**, start typing ```Systems Manager``` in the quick search box and press **Enter**:
+#### Run Semgrep Scan Manually
 
-![system manager](/images/5-Workshop/5.3-S3-vpc/sm.png)
+```bash
+cd Backend-FastAPI-Docker_Build-Pipeline/backend
 
-2. From the **Systems Manager** menu, find **Node Management** in the left menu and click **Session Manager**:
+# Basic scan
+semgrep --config semgrep.yml .
 
-![system manager](/images/5-Workshop/5.3-S3-vpc/sm1.png)
+# Scan with JSON output
+semgrep --config semgrep.yml . --json -o semgrep-results.json
 
-3. Click **Start Session**, and select **the EC2 instance** named **Test-Gateway-Endpoint**. 
-{{% notice info %}}
-This EC2 instance is already running in "VPC Cloud" and will be used to test connectivity to Amazon S3 through the Gateway endpoint you just created (s3-gwe). {{% /notice %}}
+# Scan with HTML report
+semgrep --config semgrep.yml . --html -o semgrep-report.html
+```
 
-![Start session](/images/5-Workshop/5.3-S3-vpc/start-session.png)
+![Semgrep Results](/images/5-Workshop/5.3-Setting-up-GitLab-CI-CD-Pipeline/5.3.2-DevSecOps-Security-Testing&Configuration/semgrep-results.png)
 
-**Session Manager** will open a new browser tab with a shell prompt: sh-4.2 $
+### Step 2: Manual Trivy Configuration & Testing
 
-![Success](/images/5-Workshop/5.3-S3-vpc/start-session-success.png)
+#### Install Trivy
 
-You have successfully start a session - connect to the EC2 instance in VPC cloud. In the next step, we will create a S3 bucket and a file in it. 
+```bash
+# Install Trivy
+curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
-#### Create a file and upload to s3 bucket
+# Verify installation
+trivy --version
+```
 
-1. Change to the ssm-user's home directory by typing ```cd ~``` in the CLI
+#### Run Filesystem Scan
 
-![Change user's dir](/images/5-Workshop/5.3-S3-vpc/cli1.png)
+```bash
+cd Backend-FastAPI-Docker_Build-Pipeline/backend
 
-2. Create a new file to use for testing with the command ```fallocate -l 1G testfile.xyz```, which will create a file of 1GB size named "testfile.xyz".
+# Basic filesystem scan
+trivy fs --severity HIGH,CRITICAL .
 
-![Create file](/images/5-Workshop/5.3-S3-vpc/cli-file.png)
+# Scan with JSON output
+trivy fs --severity HIGH,CRITICAL . --format json -o trivy-fs-results.json
+```
 
-3. Upload file to S3 bucket with command ```aws s3 cp testfile.xyz s3://your-bucket-name```. Replace your-bucket-name with the name of S3 bucket that you created earlier.
+#### Build and Scan Container Image
 
-![Uploaded](/images/5-Workshop/5.3-S3-vpc/uploaded.png)
+```bash
+# Build Docker image
+cd Backend-FastAPI-Docker_Build-Pipeline
+docker build -t fastapi-lambda:test backend/
 
-You have successfully uploaded the file to your S3 bucket. You can now terminate the session.
+# Scan container image
+trivy image --severity HIGH,CRITICAL fastapi-lambda:test
 
-#### Check object in S3 bucket
+# Scan with exit code (fails on findings)
+trivy image --exit-code 1 --severity HIGH,CRITICAL fastapi-lambda:test
+```
 
-1. Navigate to S3 console.  
-2. Click the name of your s3 bucket
-3. In the Bucket console, you will see the file you have uploaded to your S3 bucket
+**Example Output:**
+```
+Scanning filesystem with Trivy...
+2025-11-18T03:44:45Z	INFO	Detected OS	family="amazon" version="2"
+2025-11-18T03:45:14Z	INFO	[python-pkg] Detecting vulnerabilities...
 
-![Check S3](/images/5-Workshop/5.3-S3-vpc/check-s3-bucket.png)
+Report Summary
+┌──────────────────────────────────────────────────────────┬────────────┬─────────────────┬─────────┐
+│ Target                                                   │ Type       │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ fastapi-lambda:test (amazon 2)                          │ amazon     │        0        │    -    │
+│ var/task/fastapi-0.115.0.dist-info/METADATA             │ python-pkg │        1        │    -    │
+└──────────────────────────────────────────────────────────┴────────────┴─────────────────┴─────────┘
 
-#### Section summary
-
-Congratulation on completing access to S3 from VPC. In this section, you created a Gateway endpoint for Amazon S3, and used the AWS CLI to upload an object. The upload worked because the Gateway endpoint allowed communication to S3, without needing an Internet Gateway attached to "VPC Cloud". This demonstrates the functionality of the Gateway endpoint as a secure path to S3 without traversing the Public Internet.
-
-
-
-
-
-
-
-
-
-
-
-
+CRITICAL: 1 (CVE-2024-XXXXX in fastapi==0.115.0)
+```
 
 
+
+### Step 3: Manual ECR Image Scanning Configuration
+
+#### Enable ECR Image Scanning
+
+```bash
+# Enable scanning on existing repository
+aws ecr put-image-scanning-configuration \
+    --repository-name fastapi-lambda \
+    --image-scanning-configuration scanOnPush=true \
+    --region ap-southeast-1
+```
+
+#### View ECR Scan Results
+
+```bash
+# Get scan findings
+aws ecr describe-image-scan-findings \
+    --repository-name fastapi-lambda \
+    --image-id imageTag=test \
+    --region ap-southeast-1
+```
+
+![ECR Scan Results](/images/5-Workshop/5.3-Setting-up-GitLab-CI-CD-Pipeline/5.3.2-DevSecOps-Security-Testing&Configuration/ecr-scan-results.png)
+
+### Security Testing Workflow
+
+Create `security-test.sh` script to run all security tests:
+
+```bash
+#!/bin/bash
+set -e
+
+echo "Starting DevSecOps Security Testing..."
+
+# 1. Semgrep SAST Scan
+echo "Running Semgrep SAST scan..."
+cd Backend-FastAPI-Docker_Build-Pipeline/backend
+semgrep --config semgrep.yml . --json -o ../semgrep-results.json
+
+# 2. Trivy Filesystem Scan
+echo "Running Trivy filesystem scan..."
+trivy fs --severity HIGH,CRITICAL . --format json -o ../trivy-fs-results.json
+
+# 3. Build and Scan Container
+echo "Building Docker image..."
+docker build -t fastapi-lambda:security-test backend/
+
+echo "Running Trivy container scan..."
+trivy image --severity HIGH,CRITICAL --format json -o ../trivy-image-results.json fastapi-lambda:security-test
+
+echo "Security testing complete!"
+```
+
+### View Results in GitLab CI/CD
+
+After pushing code, view security scan results:
+
+1. Navigate to **CI/CD** → **Pipelines**
+2. Click on pipeline run
+3. View `lint_and_scan` job logs for Semgrep results
+4. View `build_and_push` job logs for Trivy results
+
+![GitLab Pipeline Logs](/images/5-Workshop/5.3-Setting-up-GitLab-CI-CD-Pipeline/5.3.2-DevSecOps-Security-Testing&Configuration/semgrep-results-gitlab.png)
+
+![GitLab Pipeline Logs](/images/5-Workshop/5.3-Setting-up-GitLab-CI-CD-Pipeline/5.3.2-DevSecOps-Security-Testing&Configuration/codebuild-logs.png)
+
+### Best Practices
+
+1. **Run Before Push**: Test locally before pushing
+2. **Fail Fast**: Use `--exit-code 1` to fail builds on critical findings
+3. **Severity Threshold**: Only block on HIGH and CRITICAL findings
+4. **Regular Updates**: Update Semgrep rules and Trivy database regularly

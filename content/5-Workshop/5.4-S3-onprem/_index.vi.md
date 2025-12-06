@@ -1,21 +1,124 @@
 ﻿---
-title : "Truy cáº­p S3 tá»« mÃ´i trÆ°á»ng truyá»n thá»‘ng"
-date: "2024-01-01" 
-weight : 4 
-chapter : false
-pre : " <b> 5.4. </b> "
+title: "Deploy FastAPI Backend"
+date: "2024-01-01"
+weight: 4
+chapter: false
+pre: " <b> 5.4. </b> "
 ---
 
-#### Tá»•ng quan
+## Deploy FastAPI Backend
 
-+ Trong pháº§n nÃ y, báº¡n sáº½ táº¡o má»™t Interface Endpoint Ä‘á»ƒ truy cáº­p Amazon S3 tá»« mÃ´i trÆ°á»ng truyá»n thá»‘ng mÃ´ phá»ng. Interface Endpoint sáº½ cho phÃ©p báº¡n Ä‘á»‹nh tuyáº¿n Ä‘áº¿n Amazon S3 qua káº¿t ná»‘i VPN tá»« mÃ´i trÆ°á»ng truyá»n thá»‘ng mÃ´ phá»ng cá»§a báº¡n.
+FastAPI backend được tự động deploy bởi GitLab CI/CD pipeline. Phần này giải thích cấu trúc ứng dụng và cách test.
 
-+ Táº¡i sao nÃªn sá»­ dá»¥ng **Interface Endpoint**:
-    + CÃ¡c Gateway endpoints chá»‰ hoáº¡t Ä‘á»™ng vá»›i cÃ¡c tÃ i nguyÃªn Ä‘ang cháº¡y trong VPC nÆ¡i chÃºng Ä‘Æ°á»£c táº¡o. Interface Endpoint  hoáº¡t Ä‘á»™ng vá»›i tÃ i nguyÃªn cháº¡y trong VPC vÃ  cáº£ tÃ i nguyÃªn cháº¡y trong mÃ´i trÆ°á»ng truyá»n thá»‘ng. Kháº£ nÄƒng káº¿t ná»‘i tá»« mÃ´i trÆ°á»ng truyá»n thá»‘ng cá»§a báº¡n vá»›i aws cloud cÃ³ thá»ƒ Ä‘Æ°á»£c cung cáº¥p bá»Ÿi AWS Site-to-Site VPN hoáº·c AWS Direct Connect.
-    + Interface Endpoint cho phÃ©p báº¡n káº¿t ná»‘i vá»›i cÃ¡c dá»‹ch vá»¥ do AWS PrivateLink cung cáº¥p. CÃ¡c dá»‹ch vá»¥ nÃ y bao gá»“m má»™t sá»‘ dá»‹ch vá»¥ AWS, dá»‹ch vá»¥ do cÃ¡c Ä‘á»‘i tÃ¡c vÃ  khÃ¡ch hÃ ng AWS lÆ°u trá»¯ trong VPC cá»§a riÃªng há» (gá»i táº¯t lÃ  Dá»‹ch vá»¥ PrivateLink endpoints) vÃ  cÃ¡c dá»‹ch vá»¥ Äá»‘i tÃ¡c AWS Marketplace. Äá»‘i vá»›i workshop nÃ y, chÃºng ta sáº½ táº­p trung vÃ o viá»‡c káº¿t ná»‘i vá»›i Amazon S3.
-    
-![Interface endpoint architecture](/images/5-Workshop/5.4-S3-onprem/diagram3.png)
+### Tổng quan Kiến trúc
 
+Ứng dụng tuân theo kiến trúc phân lớp:
 
+| Layer | Location | Trách nhiệm |
+| --- | --- | --- |
+| **API** | `app/api/routers/` | Xử lý HTTP requests, routing |
+| **Service** | `app/services/` | Business logic, orchestration |
+| **Repository** | `app/repositories/` | Data access, DynamoDB operations |
+| **Models** | `app/models/` | Data structures, validation |
+| **Core** | `app/core/` | Configuration, security, logging |
 
+### Luồng Request
 
+```
+HTTP Request
+    ↓
+API Gateway HTTP API
+    ↓
+Lambda Function (Container)
+    ↓
+Mangum (ASGI Adapter)
+    ↓
+FastAPI Application
+    ├── /auth (register, login)
+    ├── /products (CRUD operations)
+    └── /orders (create, list, get)
+    ↓
+Service Layer (Business Logic)
+    ↓
+Repository Layer (DynamoDB)
+    ↓
+DynamoDB Tables
+```
+
+### Nội dung
+
+1. [Cấu trúc FastAPI Application](5.4.1-prepare/) - Cấu trúc code và kiến trúc
+2. [Deploy Infrastructure](5.4.2-create-interface-enpoint/) - Terraform modules và AWS resources
+3. [Test API](5.4.3-test-endpoint/) - Test endpoints với curl và Swagger UI
+4. [Load Testing](5.4.4-dns-simulation/) - Performance testing với Artillery
+
+### Deploy Tự động
+
+Job `terraform_deploy` trong GitLab CI/CD tự động:
+
+1. Initialize Terraform
+2. Plan infrastructure changes
+3. Apply changes (tạo/cập nhật resources)
+4. Output API Gateway URL
+
+**Không cần deploy thủ công!** Chỉ cần push code và pipeline xử lý mọi thứ.
+
+### Infrastructure được Tạo
+
+- **DynamoDB Tables**: `products`, `orders`, `users`
+- **Lambda Function**: Container-based FastAPI application
+- **API Gateway**: HTTP API (v2) với Lambda integration
+- **IAM Roles**: Least privilege permissions
+- **CloudWatch**: Log groups và alarms
+- **SNS**: Alert notifications
+
+![Lambda Function Configuration](/images/5-Workshop/5.4-Deploy-FastAPI-Backend/lambda-function.png)
+
+### Lấy API URL
+
+Sau khi pipeline hoàn thành:
+
+```bash
+# Từ GitLab job logs (terraform_deploy)
+# Hoặc từ Terraform output:
+cd Backend-FastAPI-Docker_Build-Pipeline/infra
+terraform output api_url
+```
+
+### Test Health Endpoint
+
+```bash
+API_URL="https://YOUR_API_ID.execute-api.ap-southeast-1.amazonaws.com"
+curl $API_URL/health
+# Expected: {"status": "ok"}
+```
+
+### API Endpoints
+
+| Method | Endpoint | Mô tả | Auth |
+|--------|----------|-------|------|
+| `GET` | `/health` | Health check | Public |
+| `POST` | `/auth/register` | Đăng ký user | Public |
+| `POST` | `/auth/login` | Login và lấy JWT | Public |
+| `GET` | `/products` | List products | Public |
+| `POST` | `/products` | Tạo product | Admin |
+| `GET` | `/products/{id}` | Lấy product | Public |
+| `PUT` | `/products/{id}` | Cập nhật product | Admin |
+| `DELETE` | `/products/{id}` | Xóa product | Admin |
+| `GET` | `/orders` | List user orders | User |
+| `POST` | `/orders` | Tạo order | User |
+| `GET` | `/orders/{id}` | Lấy order | User |
+
+### Swagger Documentation
+
+Truy cập interactive API documentation:
+
+```
+https://YOUR_API_ID.execute-api.ap-southeast-1.amazonaws.com/docs
+```
+
+![FastAPI Swagger Documentation](/images/5-Workshop/5.4-Deploy-FastAPI-Backend/api-endpoints.png)
+
+{{% notice info %}}
+Backend được tự động deploy bởi pipeline. Bạn chỉ cần test sau khi deployment hoàn thành.
+{{% /notice %}}

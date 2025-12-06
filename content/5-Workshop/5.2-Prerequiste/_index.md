@@ -1,243 +1,181 @@
 ﻿---
-title : "Prerequiste"
-date: "2024-01-01" 
-weight : 2 
-chapter : false
-pre : " <b> 5.2. </b> "
+title: "Prerequisites"
+date: "2024-01-01"
+weight: 2
+chapter: false
+pre: " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Add the following IAM permission policy to your user account to deploy and cleanup this workshop.
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "cloudformation:*",
-                "cloudwatch:*",
-                "ec2:AcceptTransitGatewayPeeringAttachment",
-                "ec2:AcceptTransitGatewayVpcAttachment",
-                "ec2:AllocateAddress",
-                "ec2:AssociateAddress",
-                "ec2:AssociateIamInstanceProfile",
-                "ec2:AssociateRouteTable",
-                "ec2:AssociateSubnetCidrBlock",
-                "ec2:AssociateTransitGatewayRouteTable",
-                "ec2:AssociateVpcCidrBlock",
-                "ec2:AttachInternetGateway",
-                "ec2:AttachNetworkInterface",
-                "ec2:AttachVolume",
-                "ec2:AttachVpnGateway",
-                "ec2:AuthorizeSecurityGroupEgress",
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:CreateClientVpnEndpoint",
-                "ec2:CreateClientVpnRoute",
-                "ec2:CreateCustomerGateway",
-                "ec2:CreateDhcpOptions",
-                "ec2:CreateFlowLogs",
-                "ec2:CreateInternetGateway",
-                "ec2:CreateLaunchTemplate",
-                "ec2:CreateNetworkAcl",
-                "ec2:CreateNetworkInterface",
-                "ec2:CreateNetworkInterfacePermission",
-                "ec2:CreateRoute",
-                "ec2:CreateRouteTable",
-                "ec2:CreateSecurityGroup",
-                "ec2:CreateSubnet",
-                "ec2:CreateSubnetCidrReservation",
-                "ec2:CreateTags",
-                "ec2:CreateTransitGateway",
-                "ec2:CreateTransitGatewayPeeringAttachment",
-                "ec2:CreateTransitGatewayPrefixListReference",
-                "ec2:CreateTransitGatewayRoute",
-                "ec2:CreateTransitGatewayRouteTable",
-                "ec2:CreateTransitGatewayVpcAttachment",
-                "ec2:CreateVpc",
-                "ec2:CreateVpcEndpoint",
-                "ec2:CreateVpcEndpointConnectionNotification",
-                "ec2:CreateVpcEndpointServiceConfiguration",
-                "ec2:CreateVpnConnection",
-                "ec2:CreateVpnConnectionRoute",
-                "ec2:CreateVpnGateway",
-                "ec2:DeleteCustomerGateway",
-                "ec2:DeleteFlowLogs",
-                "ec2:DeleteInternetGateway",
-                "ec2:DeleteNetworkInterface",
-                "ec2:DeleteNetworkInterfacePermission",
-                "ec2:DeleteRoute",
-                "ec2:DeleteRouteTable",
-                "ec2:DeleteSecurityGroup",
-                "ec2:DeleteSubnet",
-                "ec2:DeleteSubnetCidrReservation",
-                "ec2:DeleteTags",
-                "ec2:DeleteTransitGateway",
-                "ec2:DeleteTransitGatewayPeeringAttachment",
-                "ec2:DeleteTransitGatewayPrefixListReference",
-                "ec2:DeleteTransitGatewayRoute",
-                "ec2:DeleteTransitGatewayRouteTable",
-                "ec2:DeleteTransitGatewayVpcAttachment",
-                "ec2:DeleteVpc",
-                "ec2:DeleteVpcEndpoints",
-                "ec2:DeleteVpcEndpointServiceConfigurations",
-                "ec2:DeleteVpnConnection",
-                "ec2:DeleteVpnConnectionRoute",
-                "ec2:Describe*",
-                "ec2:DetachInternetGateway",
-                "ec2:DisassociateAddress",
-                "ec2:DisassociateRouteTable",
-                "ec2:GetLaunchTemplateData",
-                "ec2:GetTransitGatewayAttachmentPropagations",
-                "ec2:ModifyInstanceAttribute",
-                "ec2:ModifySecurityGroupRules",
-                "ec2:ModifyTransitGatewayVpcAttachment",
-                "ec2:ModifyVpcAttribute",
-                "ec2:ModifyVpcEndpoint",
-                "ec2:ReleaseAddress",
-                "ec2:ReplaceRoute",
-                "ec2:RevokeSecurityGroupEgress",
-                "ec2:RevokeSecurityGroupIngress",
-                "ec2:RunInstances",
-                "ec2:StartInstances",
-                "ec2:StopInstances",
-                "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
-                "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
-                "iam:AddRoleToInstanceProfile",
-                "iam:AttachRolePolicy",
-                "iam:CreateInstanceProfile",
-                "iam:CreatePolicy",
-                "iam:CreateRole",
-                "iam:DeleteInstanceProfile",
-                "iam:DeletePolicy",
-                "iam:DeleteRole",
-                "iam:DeleteRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:GetInstanceProfile",
-                "iam:GetPolicy",
-                "iam:GetRole",
-                "iam:GetRolePolicy",
-                "iam:ListPolicyVersions",
-                "iam:ListRoles",
-                "iam:PassRole",
-                "iam:PutRolePolicy",
-                "iam:RemoveRoleFromInstanceProfile",
-                "lambda:CreateFunction",
-                "lambda:DeleteFunction",
-                "lambda:DeleteLayerVersion",
-                "lambda:GetFunction",
-                "lambda:GetLayerVersion",
-                "lambda:InvokeFunction",
-                "lambda:PublishLayerVersion",
-                "logs:CreateLogGroup",
-                "logs:DeleteLogGroup",
-                "logs:DescribeLogGroups",
-                "logs:PutRetentionPolicy",
-                "route53:ChangeTagsForResource",
-                "route53:CreateHealthCheck",
-                "route53:CreateHostedZone",
-                "route53:CreateTrafficPolicy",
-                "route53:DeleteHostedZone",
-                "route53:DisassociateVPCFromHostedZone",
-                "route53:GetHostedZone",
-                "route53:ListHostedZones",
-                "route53domains:ListDomains",
-                "route53domains:ListOperations",
-                "route53domains:ListTagsForDomain",
-                "route53resolver:AssociateResolverEndpointIpAddress",
-                "route53resolver:AssociateResolverRule",
-                "route53resolver:CreateResolverEndpoint",
-                "route53resolver:CreateResolverRule",
-                "route53resolver:DeleteResolverEndpoint",
-                "route53resolver:DeleteResolverRule",
-                "route53resolver:DisassociateResolverEndpointIpAddress",
-                "route53resolver:DisassociateResolverRule",
-                "route53resolver:GetResolverEndpoint",
-                "route53resolver:GetResolverRule",
-                "route53resolver:ListResolverEndpointIpAddresses",
-                "route53resolver:ListResolverEndpoints",
-                "route53resolver:ListResolverRuleAssociations",
-                "route53resolver:ListResolverRules",
-                "route53resolver:ListTagsForResource",
-                "route53resolver:UpdateResolverEndpoint",
-                "route53resolver:UpdateResolverRule",
-                "s3:AbortMultipartUpload",
-                "s3:CreateBucket",
-                "s3:DeleteBucket",
-                "s3:DeleteObject",
-                "s3:GetAccountPublicAccessBlock",
-                "s3:GetBucketAcl",
-                "s3:GetBucketOwnershipControls",
-                "s3:GetBucketPolicy",
-                "s3:GetBucketPolicyStatus",
-                "s3:GetBucketPublicAccessBlock",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketVersioning",
-                "s3:ListAccessPoints",
-                "s3:ListAccessPointsForObjectLambda",
-                "s3:ListAllMyBuckets",
-                "s3:ListBucket",
-                "s3:ListBucketMultipartUploads",
-                "s3:ListBucketVersions",
-                "s3:ListJobs",
-                "s3:ListMultipartUploadParts",
-                "s3:ListMultiRegionAccessPoints",
-                "s3:ListStorageLensConfigurations",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:PutBucketAcl",
-                "s3:PutBucketPolicy",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:PutObject",
-                "secretsmanager:CreateSecret",
-                "secretsmanager:DeleteSecret",
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:ListSecrets",
-                "secretsmanager:ListSecretVersionIds",
-                "secretsmanager:PutResourcePolicy",
-                "secretsmanager:TagResource",
-                "secretsmanager:UpdateSecret",
-                "sns:ListTopics",
-                "ssm:DescribeInstanceProperties",
-                "ssm:DescribeSessions",
-                "ssm:GetConnectionStatus",
-                "ssm:GetParameters",
-                "ssm:ListAssociations",
-                "ssm:ResumeSession",
-                "ssm:StartSession",
-                "ssm:TerminateSession"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
+## Prerequisites
 
+Before starting this workshop, ensure you have the following requirements ready.
+
+### 1. AWS Account
+
+You need an AWS account with appropriate permissions. If you don't have one:
+
+1. Go to [AWS Console](https://aws.amazon.com/)
+2. Click **Create an AWS Account**
+3. Follow the registration process
+4. Enable MFA for the root account (recommended)
+
+![AWS Account Creation](/images/5-Workshop/5.2-Prerequisites/aws-account.png)
+
+{{% notice warning %}}
+This workshop will create resources that incur costs. Estimated cost is ~$5-10 if cleaned up within a few hours. Make sure to complete the cleanup section at the end.
+{{% /notice %}}
+
+### 2. IAM User with Required Permissions
+
+Create an IAM user with programmatic access for GitLab CI/CD:
+
+#### Create IAM User
+
+```bash
+# Create IAM user
+aws iam create-user --user-name gitlab-ci-user
+
+# Create access key
+aws iam create-access-key --user-name gitlab-ci-user
 ```
 
-#### Provision resources using CloudFormation
+**Save the Access Key ID and Secret Access Key** - you'll need them for GitLab CI/CD variables.
 
-In this lab, we will use **N.Virginia region (us-east-1)**.
+#### Attach Required Policies
 
-To prepare the workshop environment, deploy this **CloudFormation Template** (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Accept all of the defaults when deploying the template. 
+The IAM user needs permissions for:
+- Lambda, API Gateway, DynamoDB
+- ECR (Elastic Container Registry)
+- Secrets Manager
+- CloudWatch, SNS
+- IAM (for creating roles)
+- S3 (for Terraform state, if using remote backend)
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
+**Option 1: Administrator Access (for workshop)**
 
-+ Tick 2 acknowledgement boxes
-+ Choose **Create stack**
+```bash
+aws iam attach-user-policy \
+    --user-name gitlab-ci-user \
+    --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+```
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
+**Option 2: Custom Policy (recommended for production)**
 
-The **ClouddFormation** deployment requires about 15 minutes to complete.
+Create a custom policy with least privilege permissions for the services listed above.
 
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+![IAM Permissions](/images/5-Workshop/5.2-Prerequisites/iam-permissions.png)
 
-+ **2 VPCs** have been created
+### 3. GitLab Account
 
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+1. Sign up at [GitLab](https://gitlab.com/)
+2. Create a new project/repository
+3. Fork or clone the workshop repository
 
-+ **3 EC2s** have been created
+![GitLab Setup](/images/5-Workshop/5.2-Prerequisites/gitlab-setup.png)
 
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+### 4. AWS CLI Configuration
 
+Install and configure AWS CLI on your local machine:
+
+#### Install AWS CLI
+
+```bash
+# Windows (PowerShell)
+msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+
+# macOS
+brew install awscli
+
+# Linux
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+
+#### Configure AWS CLI
+
+```bash
+aws configure
+```
+
+Enter the following when prompted:
+- **AWS Access Key ID**: Your IAM user access key
+- **AWS Secret Access Key**: Your IAM user secret key
+- **Default region name**: `ap-southeast-1` (or your preferred region)
+- **Default output format**: `json`
+
+#### Verify AWS CLI Configuration
+
+```bash
+# Check AWS CLI version
+aws --version
+
+# Verify credentials
+aws sts get-caller-identity
+```
+
+You should see your AWS account ID and user ARN.
+
+### 5. Clone Workshop Repository
+
+Clone the project repository:
+
+```bash
+git clone https://gitlab.com/m.quang/devsecops-aws-ver2.git
+cd devsecops-aws-ver2/Backend-FastAPI-Docker_Build-Pipeline
+```
+
+**Repository:** [https://gitlab.com/m.quang/devsecops-aws-ver2](https://gitlab.com/m.quang/devsecops-aws-ver2)
+
+### 6. GitLab CI/CD Variables Setup
+
+Before running the pipeline, you need to configure GitLab CI/CD variables. This will be covered in detail in the next section, but here's a quick overview:
+
+**Required Variables:**
+- `AWS_ACCESS_KEY_ID` - AWS access key
+- `AWS_SECRET_ACCESS_KEY` - AWS secret key (masked)
+- `AWS_DEFAULT_REGION` - AWS region
+- `JWT_SECRET_ARN` - Secrets Manager ARN for JWT
+- `ECR_URI` - ECR repository URI
+- `PROJECT_NAME` - Project name
+- `LAMBDA_FUNCTION_NAME` - Lambda function name
+
+### 7. Verify Setup
+
+Run the following commands to verify your setup:
+
+```bash
+# Check AWS CLI
+aws --version
+aws sts get-caller-identity
+
+# Check Git
+git --version
+
+# Check Docker (optional, for local testing)
+docker --version
+```
+
+### Workshop Resources
+
+The repository contains all the code and configurations needed for this workshop:
+
+{{% notice info %}}
+The workshop repository contains:
+- **Backend**: FastAPI application code with layered architecture
+- **Infrastructure**: Terraform modules for all AWS resources (DynamoDB, Lambda, API Gateway, IAM, Observability)
+- **Pipeline**: GitLab CI/CD configuration (`.gitlab-ci.yml`)
+- **Security**: Semgrep and Trivy scanning configurations
+- **Docker**: Dockerfile for Lambda container image
+{{% /notice %}}
+
+### Next Steps
+
+After completing prerequisites:
+
+1. ✅ AWS account created
+2. ✅ IAM user with access keys
+3. ✅ AWS CLI configured
+4. ✅ Repository cloned
+5. ⏭️ Configure GitLab CI/CD variables (next section)
+6. ⏭️ Set up GitLab CI/CD pipeline (next section)

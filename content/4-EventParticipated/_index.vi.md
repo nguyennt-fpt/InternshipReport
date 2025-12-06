@@ -23,7 +23,7 @@ pre: " <b> 4. </b> "
 
 &emsp;**Thời gian:** 14:00, ngày 03 tháng 10 năm 2025
 
-&emsp;**Địa điểm:** Tầng 36, Tòa nhà Bitexco, 02 Hai Trieu, Quận 1, TP. Hồ Chí Minh
+&emsp;**Địa điểm:** Tầng 26, Tòa nhà Bitexco, 02 Hai Trieu, Quận 1, TP. Hồ Chí Minh
 
 &emsp;**Vai trò:** Người tham dự  
 

@@ -1,112 +1,254 @@
 ﻿---
-title : "On-premises DNS Simulation"
+title: "Load Testing with Artillery"
 date: "2024-01-01"
-weight : 4
-chapter : false
-pre : " <b> 5.4.4 </b> "
+weight: 4
+chapter: false
+pre: " <b> 5.4.4. </b> "
 ---
 
-AWS PrivateLink endpoints have a fixed IP address in each Availability Zone where they are deployed, for the life of the endpoint (until it is deleted). These IP addresses are attached to Elastic Network Interfaces (ENIs). AWS recommends using DNS to resolve the IP addresses for endpoints so that downstream applications use the latest IP addresses when ENIs are added to new AZs, or deleted over time.
+## Load Testing with Artillery
 
-In this section, you will create a forwarding rule to send DNS resolution requests from a simulated on-premises environment to a Route 53 Private Hosted Zone. This section leverages the infrastructure deployed by CloudFormation in the Prepare the environment section.
+In this section, you will perform load testing on the deployed API using Artillery to simulate user traffic and measure performance.
 
-#### Create DNS Alias Records for the Interface endpoint
-1. Navigate to the [Route 53 management console](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones?region=us-east-1#) (Hosted Zones section).  The CloudFormation template you deployed in the Prepare the environment section created this Private Hosted Zone. Click on the name of the Private Hosted Zone, s3.us-east-1.amazonaws.com:
+### Prerequisites
 
-![hosted zone](/images/5-Workshop/5.4-S3-onprem/hosted-zone.png)
+Install Artillery:
 
-2. Create a new record in the Private Hosted Zone:
+```bash
+npm install -g artillery
+```
 
-![Create record](/images/5-Workshop/5.4-S3-onprem/create-record1.png)
+Or using Docker:
 
-+ Record name and record type keep default options
-+ Alias Button: Click to enable
-+ Route traffic to: Alias to VPC Endpoint
-+ Region: US East (N. Virginia) [us-east-1]
-+ Choose endpoint: Paste the Regional VPC Endpoint DNS name from your text editor (you saved when doing section 4.3)
+```bash
+docker run -it --rm -v $(pwd):/work artilleryio/artillery:latest
+```
 
-![record1](/images/5-Workshop/5.4-S3-onprem/record1.png)
+### Step 1: Get API URL and Token
 
-3. Click Add another record, and add a second record using the following values. Click Create records when finished to create both records.
-+ Record name: *.
-+ Record type: keep default value (type A)
-+ Alias Button: Click to enable
-+ Route traffic to: Alias to VPC Endpoint
-+ Region: US East (N. Virginia) [us-east-1]
-+ Choose endpoint: Paste the Regional VPC Endpoint DNS name from your text editor
+```bash
+# Get API URL
+cd Backend-FastAPI-Docker_Build-Pipeline/infra
+API_URL=$(terraform output -raw api_url)
 
-![record 2](/images/5-Workshop/5.4-S3-onprem/record2.png)
+# Get admin token (you need to login first)
+TOKEN="YOUR_ADMIN_TOKEN_HERE"
+```
 
-The new records appear in the Route 53 console:
+**Note:** Replace with your actual admin token from `/auth/login` endpoint.
 
-![result](/images/5-Workshop/5.4-S3-onprem/result.png)
+### Step 2: Create Load Test Configuration
 
-#### Create a Resolver Forwarding Rule
+Create `load-test.yml`:
 
-Route 53 Resolver Forwarding Rules allow you to forward DNS queries from your VPC to other sources for name resolution. Outside of a workshop environment, you might use this feature to forward DNS queries from your VPC to DNS servers running on-premises. In this section, you will simulate an on-premises conditional forwarder by creating a forwarding rule that forwards DNS queries for Amazon S3 to a Private Hosted Zone running in "VPC Cloud" in-order to resolve the PrivateLink interface endpoint regional DNS name.
+```yaml
+config:
+  target: "https://YOUR_API_ID.execute-api.ap-southeast-1.amazonaws.com"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      name: "Warm up"
+    - duration: 120
+      arrivalRate: 50
+      name: "Ramp up"
+    - duration: 60
+      arrivalRate: 10
+      name: "Cool down"
+  defaults:
+    headers:
+      Authorization: "Bearer YOUR_ADMIN_TOKEN_HERE"
+      Content-Type: "application/json"
 
-1. From the Route 53 management console, click **Inbound endpoints** on the left side bar
-2. In the Inbound endpoints console, click the ID of the inbound endpoint
+scenarios:
+  - name: "Get products"
+    weight: 70
+    flow:
+      - get:
+          url: "/products"
+          
+  - name: "Create product"
+    weight: 30
+    flow:
+      - post:
+          url: "/products"
+          json:
+            name: "Load test product {{ $randomString() }}"
+            price: 29.99
+            stock: 100
+            category: "electronics"
+```
 
-![Inbound endpoint](/images/5-Workshop/5.4-S3-onprem/route53-1.png)
+**Important:** Replace:
+- `target` with your actual API Gateway URL
+- `Authorization` header with your admin token
 
-3. Copy the two IP addresses listed to your text editor
+### Step 3: Run Load Test
 
-![Ip addresses](/images/5-Workshop/5.4-S3-onprem/route53-2.png)
+```bash
+artillery run load-test.yml
+```
 
-4. From the Route 53 menu, choose **Resolver** > **Rules**, and click **Create rule**:
+### Step 4: Analyze Results
 
-![Ip addresses](/images/5-Workshop/5.4-S3-onprem/route53-3.png)
+Artillery will output statistics like:
 
-5. In the Create rule console:
-+ Name: myS3Rule
-+ Rule type: Forward
-+ Domain name: s3.us-east-1.amazonaws.com
+```
+Summary report @ 14:30:00(+0000) 2024-01-01
+  Scenarios launched:  1000
+  Scenarios completed: 1000
+  Requests completed:  2000
+  Mean response/sec:   45.2
+  Response time (msec):
+    min: 45
+    max: 1200
+    median: 120
+    p95: 350
+    p99: 800
+  Scenario counts:
+    Get products: 700 (70%)
+    Create product: 300 (30%)
+  Codes:
+    200: 1950
+    201: 50
+    500: 0
+```
 
-![create rule](/images/5-Workshop/5.4-S3-onprem/route53-4.png)
+### Step 5: Generate HTML Report
 
-+ VPC: VPC On-prem
-+ Outbound endpoint: VPCOnpremOutboundEndpoint
+```bash
+artillery run --output report.json load-test.yml
+artillery report report.json
+```
 
-![create rule](/images/5-Workshop/5.4-S3-onprem/route53-5.png)
+This generates an HTML report with:
+- Response time graphs
+- Request rate charts
+- Error rates
+- Scenario breakdown
 
-+ Target IP Addresses: Enter both IP addresses from your text editor (inbound endpoint addresses) and then click Submit
+![Load Test Results](/images/5-Workshop/5.4-Deploy-FastAPI-Backend/5.4.4-Load%20Testing-with-Artillery/load-test.png)
 
-![create rule](/images/5-Workshop/5.4-S3-onprem/route53-6.png)
-You have successfully created resolver forwarding rule. 
+### Advanced Load Test Configuration
 
-![create rule](/images/5-Workshop/5.4-S3-onprem/route53-7.png)
+For more realistic testing:
 
-#### Test the on-premises DNS Simulation
+```yaml
+config:
+  target: "https://YOUR_API_ID.execute-api.ap-southeast-1.amazonaws.com"
+  phases:
+    - duration: 120
+      arrivalRate: 5
+      name: "Warm up"
+    - duration: 300
+      arrivalRate: 20
+      name: "Sustained load"
+    - duration: 60
+      arrivalRate: 5
+      name: "Cool down"
+  defaults:
+    headers:
+      Authorization: "Bearer YOUR_TOKEN"
+      Content-Type: "application/json"
+  processor: "./processor.js"  # Custom processor for dynamic data
 
-1. Connect to **Test-Interface-Endpoint EC2 instance** with **Session manager**
+scenarios:
+  - name: "Product browsing"
+    weight: 60
+    flow:
+      - get:
+          url: "/products"
+      - think: 2  # Wait 2 seconds
+      - get:
+          url: "/products?category=electronics"
+          
+  - name: "Product management"
+    weight: 30
+    flow:
+      - post:
+          url: "/products"
+          json:
+            name: "Product {{ $randomString() }}"
+            price: {{ $randomNumber(10, 1000) }}
+            stock: {{ $randomNumber(1, 100) }}
+            category: "{{ $pick(['electronics', 'clothing', 'books']) }}"
+      - think: 1
+      - get:
+          url: "/products"
+          
+  - name: "Order flow"
+    weight: 10
+    flow:
+      - get:
+          url: "/products"
+      - post:
+          url: "/orders"
+          json:
+            items:
+              - product_id: "{{ $pick(['id1', 'id2', 'id3']) }}"
+                quantity: {{ $randomNumber(1, 5) }}
+```
 
-![create rule](/images/5-Workshop/5.4-S3-onprem/test1.png)
+### Monitor During Load Test
 
-2. Test DNS resolution. The dig command will return the IP addresses assigned to the VPC Interface endpoint running in VPC Cloud (your IP's will be different): dig +short s3.us-east-1.amazonaws.com 
+#### CloudWatch Metrics
 
-{{% notice note %}}
-The IP addresses returned are the VPC endpoint IP addresses, NOT the Resolver IP addresses you pasted from your text editor. The IP addresses of the Resolver endpoint and the VPC endpoint look similar because they are all from the VPC Cloud CIDR block.
+1. Navigate to **CloudWatch** → **Metrics** → **AWS/Lambda**
+2. Select `fastapi-lambda-fn`
+3. Monitor:
+   - **Invocations**: Request count
+   - **Duration**: Response time
+   - **Errors**: Error rate
+   - **Throttles**: Throttled requests
+
+#### CloudWatch Logs
+
+```bash
+# Watch logs in real-time
+aws logs tail /aws/lambda/fastapi-lambda-fn --follow --region ap-southeast-1
+```
+
+### Performance Benchmarks
+
+Expected performance for Lambda container:
+
+| Metric | Target | Notes |
+|--------|--------|-------|
+| **P50 (median)** | < 200ms | Most requests |
+| **P95** | < 500ms | 95% of requests |
+| **P99** | < 1000ms | 99% of requests |
+| **Error Rate** | < 0.1% | Very low errors |
+| **Throughput** | 50+ req/s | Depends on concurrency |
+
+### Troubleshooting
+
+#### High Response Times
+
+- Check Lambda cold starts
+- Monitor DynamoDB throttling
+- Review CloudWatch metrics
+- Check API Gateway latency
+
+#### High Error Rates
+
+- Check CloudWatch logs for errors
+- Verify DynamoDB table capacity
+- Check Lambda timeout settings
+- Review API Gateway limits
+
+#### Throttling
+
+- Increase Lambda concurrency limit
+- Check DynamoDB on-demand capacity
+- Review API Gateway throttling settings
+
+### Best Practices
+
+1. **Start Small**: Begin with low arrival rates and gradually increase
+2. **Monitor Resources**: Watch CloudWatch metrics during testing
+3. **Test Realistic Scenarios**: Mix read and write operations
+4. **Use Correlation IDs**: Track requests across logs
+5. **Test Error Handling**: Include negative test cases
+
+{{% notice tip %}}
+Run load tests during off-peak hours and monitor AWS costs. Load testing can generate significant traffic and incur costs.
 {{% /notice %}}
-
-![create rule](/images/5-Workshop/5.4-S3-onprem/dig.png)
-
-
-3. Navigate to the VPC menu (Endpoints section), select the S3 Interface endpoint. Click the Subnets tab and verify that the IP addresses returned by Dig match the VPC endpoint:
-
-![create rule](/images/5-Workshop/5.4-S3-onprem/subnet.png)
-
-4. Return to your shell and use the AWS CLI to test listing your S3 buckets:
-
-```
-aws s3 ls --endpoint-url https://s3.us-east-1.amazonaws.com
-```
-
-![create rule](/images/5-Workshop/5.4-S3-onprem/endpoint.png)
-
-5. Terminate your Session Manager session:
-
-![create rule](/images/5-Workshop/5.4-S3-onprem/terminal.png)
-
-In this section you created an Interface endpoint for Amazon S3. This endpoint can be reached from on-premises through Site-to-Site VPN or AWS Direct Connect. Route 53 Resolver outbound endpoints simulated forwarding DNS requests from on-premises to a Private Hosted Zone running the cloud. Route 53 inbound Endpoints recieved the resolution request and returned a response containing the IP addresses of the VPC interface endpoint. Using DNS to resolve the endpoint IP addresses provides high availability in-case of an Availability Zone outage.
-

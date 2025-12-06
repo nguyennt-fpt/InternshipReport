@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong suốt thời gian thực tập tại **Amazon Web Services Vietnam** từ **08-09-2025** đến **[ngày kết thúc]**, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.
+Trong suốt thời gian thực tập tại **Amazon Web Services Vietnam** từ **08-09-2025** đến **08-12-2025**, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.
 Tôi đã tham gia phát triển và triển khai một ứng dụng serverless bảo mật trên AWS, với pipeline CI/CD tự động hóa hoàn toàn, tích hợp kiểm tra bảo mật, hạ tầng dưới dạng mã và giám sát tập trung. Qua dự án này, tôi đã cải thiện kỹ năng thiết kế kiến trúc cloud, tự động hóa DevOps, phân tích bảo mật, triển khai hạ tầng với Terraform, tích hợp hệ thống và giao tiếp với team một cách chuyên nghiệp.
 
 Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy, và tích cực trao đổi với đồng nghiệp để nâng cao hiệu quả công việc.

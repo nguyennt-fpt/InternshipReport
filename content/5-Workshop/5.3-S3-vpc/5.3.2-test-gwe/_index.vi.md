@@ -1,83 +1,188 @@
 ﻿---
-title : "Kiá»ƒm tra Gateway Endpoint"
+title: "DevSecOps Security Testing & Configuration"
 date: "2024-01-01" 
-weight : 2
-chapter : false
-pre : " <b> 5.3.2 </b> "
+weight: 2
+chapter: false
+pre: " <b> 5.3.2. </b> "
 ---
 
-#### Táº¡o S3 bucket
+## DevSecOps Security Testing & Configuration
 
-1. Äi Ä‘áº¿n S3 management console
-2. Trong Bucket console, chá»n **Create bucket**
+Phần này tập trung vào **security testing** và **cấu hình tay** các công cụ security scanning cho FastAPI Backend. Bạn sẽ học cách cấu hình và test Semgrep, Trivy, và ECR scanning thủ công.
 
-![Create bucket](/images/5-Workshop/5.3-S3-vpc/create-bucket.png)
+### Tổng quan DevSecOps Testing
 
-3. Trong Create bucket console
-+ Äáº·t tÃªn bucket: chá»n 1 tÃªn mÃ  khÃ´ng bá»‹ trÃ¹ng trong pháº¡m vi toÃ n cáº§u (gá»£i Ã½: lab\<sá»‘-lab\>\<tÃªn-báº¡n\>)
+FastAPI Backend triển khai **defense-in-depth** security qua nhiều lớp testing:
 
-![Bucket name](/images/5-Workshop/5.3-S3-vpc/bucket-name.png)
+| Layer | Tool | Type | Mục đích |
+|-------|------|------|----------|
+| **Code** | Semgrep | SAST | Static code analysis |
+| **Dependencies** | Trivy FS | Dependency Scan | Scan filesystem cho vulnerabilities |
+| **Container** | Trivy Image | Container Scan | Scan Docker image |
+| **Registry** | ECR Scan | Image Scan | Automatic scan khi push |
 
+### Bước 1: Cấu hình & Test Semgrep Thủ công
 
-+ Giá»¯ nguyÃªn giÃ¡ trá»‹ cá»§a cÃ¡c fields khÃ¡c (default)
-+ KÃ©o chuá»™t xuá»‘ng vÃ  chá»n **Create bucket**
+#### Cài đặt Semgrep
 
-![Create](/images/5-Workshop/5.3-S3-vpc/create-button.png)    
+```bash
+# Cài đặt Semgrep
+pip install semgrep
 
-+ Táº¡o thÃ nh cÃ´ng S3 bucket
+# Hoặc dùng Docker
+docker pull returntocorp/semgrep
+```
 
-![Success](/images/5-Workshop/5.3-S3-vpc/bucket-success.png)
+#### Cấu hình Custom Rules
 
-#### Káº¿t ná»‘i vá»›i EC2 báº±ng session manager
+Chỉnh sửa `Backend-FastAPI-Docker_Build-Pipeline/backend/semgrep.yml`:
 
-+ Trong workshop nÃ y, báº¡n sáº½ dÃ¹ng AWS Session Manager Ä‘á»ƒ káº¿t ná»‘i Ä‘áº¿n cÃ¡c EC2 instances. Session Manager lÃ  1 tÃ­nh nÄƒng trong dá»‹ch vá»¥ Systems Manager Ä‘Æ°á»£c quáº£n lÃ½ hoÃ n toÃ n bá»Ÿi AWS. System manager cho phÃ©p báº¡n quáº£n lÃ½ Amazon EC2 instances vÃ  cÃ¡c mÃ¡y áº£o on-premises (VMs)thÃ´ng qua 1 browser-based shell. Session Manager cung cáº¥p kháº£ nÄƒng quáº£n lÃ½ phiÃªn báº£n an toÃ n vÃ  cÃ³ thá»ƒ kiá»ƒm tra mÃ  khÃ´ng cáº§n má»Ÿ cá»•ng vÃ o, duy trÃ¬ mÃ¡y chá»§ bastion host hoáº·c quáº£n lÃ½ khÃ³a SSH.
+```yaml
+rules:
+  - id: jwt-hardcoded-secret
+    message: Avoid hardcoding JWT secrets; use Secrets Manager/env.
+    severity: ERROR
+    languages: [python]
+    pattern: |
+      jwt.encode($P, $S, ...)
+    metavariable-pattern:
+      metavariable: $S
+      pattern: "'$SECRET'"
+      
+  - id: fastapi-debug
+    message: Do not run uvicorn with reload or debug in production.
+    severity: WARNING
+    languages: [python]
+    pattern-either:
+      - pattern: uvicorn.run(..., reload=True, ...)
+      - pattern: uvicorn.run(..., debug=True, ...)
+```
 
-+ First cloud journey [Lab](https://000058.awsstudygroup.com/1-introduce/) Ä‘á»ƒ hiá»ƒu sÃ¢u hÆ¡n vá» Session manager.
+#### Chạy Semgrep Scan Thủ công
 
-1. Trong AWS Management Console, gÃµ Systems Manager trong Ã´ tÃ¬m kiáº¿m vÃ  nháº¥n Enter:
+```bash
+cd Backend-FastAPI-Docker_Build-Pipeline/backend
 
-![system manager](/images/5-Workshop/5.3-S3-vpc/sm.png)
+# Basic scan
+semgrep --config semgrep.yml .
 
-2. Tá»« **Systems Manager** menu, tÃ¬m **Node Management** á»Ÿ thanh bÃªn trÃ¡i vÃ  chá»n **Session Manager**:
+# Scan với JSON output
+semgrep --config semgrep.yml . --json -o semgrep-results.json
 
-![system manager](/images/5-Workshop/5.3-S3-vpc/sm1.png)
+# Scan với HTML report
+semgrep --config semgrep.yml . --html -o semgrep-report.html
+```
 
-3. Click Start Session, vÃ  chá»n EC2 instance tÃªn **Test-Gateway-Endpoint**. 
-{{% notice info %}}
-PhiÃªn báº£n EC2 nÃ y Ä‘Ã£ cháº¡y trong "VPC cloud" vÃ  sáº½ Ä‘Æ°á»£c dÃ¹ng Ä‘á»ƒ kiá»ƒm tra kháº£ nÄƒng káº¿t ná»‘i vá»›i Amazon S3 thÃ´ng qua Ä‘iá»ƒm cuá»‘i Cá»•ng mÃ  báº¡n vá»«a táº¡o (s3-gwe). {{% /notice %}}
+![Semgrep Results](/images/5-Workshop/5.3-Setting-up-GitLab-CI-CD-Pipeline/5.3.2-DevSecOps-Security-Testing&Configuration/semgrep-results.png)
 
-![Start session](/images/5-Workshop/5.3-S3-vpc/start-session.png)
+### Bước 2: Cấu hình & Test Trivy Thủ công
 
-Session Manager sáº½ má»Ÿ browser tab má»›i vá»›i shell prompt: sh-4.2 $
+#### Cài đặt Trivy
 
-![Success](/images/5-Workshop/5.3-S3-vpc/start-session-success.png)
+```bash
+# Cài đặt Trivy
+curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
-Báº¡n Ä‘Ã£ báº¯t Ä‘áº§u phiÃªn káº¿t ná»‘i Ä‘áº¿n EC2 trong VPC Cloud thÃ nh cÃ´ng. Trong bÆ°á»›c tiáº¿p theo, chÃºng ta sáº½ táº¡o má»™t  S3 bucket vÃ  má»™t tá»‡p trong Ä‘Ã³.
-#### Create a file and upload to s3 bucket
+# Verify
+trivy --version
+```
 
-1. Äá»•i vá» ssm-user's thÆ° má»¥c báº±ng lá»‡nh "cd ~" 
+#### Chạy Filesystem Scan
 
-![Change user's dir](/images/5-Workshop/5.3-S3-vpc/cli1.png)
+```bash
+cd Backend-FastAPI-Docker_Build-Pipeline/backend
 
-2. Táº¡o 1 file Ä‘á»ƒ kiá»ƒm tra báº±ng lá»‡nh "fallocate -l 1G testfile.xyz", 1 file tÃªn "testfile.xyz" cÃ³ kÃ­ch thÆ°á»›c 1GB sáº½ Ä‘Æ°á»£c táº¡o.
+# Basic filesystem scan
+trivy fs --severity HIGH,CRITICAL .
 
-![Create file](/images/5-Workshop/5.3-S3-vpc/cli-file.png)
+# Scan với JSON output
+trivy fs --severity HIGH,CRITICAL . --format json -o trivy-fs-results.json
+```
 
-3. Táº£i file mÃ¬nh vá»«a táº¡o lÃªn S3 vá»›i lá»‡nh "aws s3 cp testfile.xyz s3://your-bucket-name". Thay your-bucket-name báº±ng tÃªn S3 báº¡n Ä‘Ã£ táº¡o.
+#### Build và Scan Container Image
 
-![Uploaded](/images/5-Workshop/5.3-S3-vpc/uploaded.png)
+```bash
+# Build Docker image
+cd Backend-FastAPI-Docker_Build-Pipeline
+docker build -t fastapi-lambda:test backend/
 
-Báº¡n Ä‘Ã£ táº£i thÃ nh cÃ´ng tá»‡p lÃªn bá»™ chá»©a S3 cá»§a mÃ¬nh. BÃ¢y giá» báº¡n cÃ³ thá»ƒ káº¿t thÃºc session.
+# Scan container image
+trivy image --severity HIGH,CRITICAL fastapi-lambda:test
 
-#### Kiá»ƒm tra object trong S3 bucket
+# Scan với exit code (fails on findings)
+trivy image --exit-code 1 --severity HIGH,CRITICAL fastapi-lambda:test
+```
 
-1. Äi Ä‘áº¿n S3 console.  
-2. Click tÃªn s3 bucket cá»§a báº¡n
-3. Trong Bucket console, báº¡n sáº½ tháº¥y tá»‡p báº¡n Ä‘Ã£ táº£i lÃªn S3 bucket cá»§a mÃ¬nh
+### Bước 3: Cấu hình ECR Image Scanning Thủ công
 
-![Check S3](/images/5-Workshop/5.3-S3-vpc/check-s3-bucket.png)
+#### Enable ECR Image Scanning
 
-#### TÃ³m táº¯t
+```bash
+# Enable scanning trên existing repository
+aws ecr put-image-scanning-configuration \
+    --repository-name fastapi-lambda \
+    --image-scanning-configuration scanOnPush=true \
+    --region ap-southeast-1
+```
 
-ChÃºc má»«ng báº¡n Ä‘Ã£ hoÃ n thÃ nh truy cáº­p S3 tá»« VPC. Trong pháº§n nÃ y, báº¡n Ä‘Ã£ táº¡o gateway endpoint cho Amazon S3 vÃ  sá»­ dá»¥ng AWS CLI Ä‘á»ƒ táº£i file lÃªn. QuÃ¡ trÃ¬nh táº£i lÃªn hoáº¡t Ä‘á»™ng vÃ¬ gateway endpoint cho phÃ©p giao tiáº¿p vá»›i S3 mÃ  khÃ´ng cáº§n Internet gateway gáº¯n vÃ o "VPC Cloud". Äiá»u nÃ y thá»ƒ hiá»‡n chá»©c nÄƒng cá»§a gateway endpoint nhÆ° má»™t Ä‘Æ°á»ng dáº«n an toÃ n Ä‘áº¿n S3 mÃ  khÃ´ng cáº§n Ä‘i qua pub    lic Internet.
+#### View ECR Scan Results
+
+```bash
+# Get scan findings
+aws ecr describe-image-scan-findings \
+    --repository-name fastapi-lambda \
+    --image-id imageTag=test \
+    --region ap-southeast-1
+```
+
+![ECR Scan Results](/images/5-Workshop/5.3-Setting-up-GitLab-CI-CD-Pipeline/5.3.2-DevSecOps-Security-Testing&Configuration/ecr-scan-results.png)
+
+### Security Testing Workflow
+
+Tạo script `security-test.sh` để chạy tất cả security tests:
+
+```bash
+#!/bin/bash
+set -e
+
+echo "Starting DevSecOps Security Testing..."
+
+# 1. Semgrep SAST Scan
+echo "Running Semgrep SAST scan..."
+cd Backend-FastAPI-Docker_Build-Pipeline/backend
+semgrep --config semgrep.yml . --json -o ../semgrep-results.json
+
+# 2. Trivy Filesystem Scan
+echo "Running Trivy filesystem scan..."
+trivy fs --severity HIGH,CRITICAL . --format json -o ../trivy-fs-results.json
+
+# 3. Build and Scan Container
+echo "Building Docker image..."
+docker build -t fastapi-lambda:security-test backend/
+
+echo "Running Trivy container scan..."
+trivy image --severity HIGH,CRITICAL --format json -o ../trivy-image-results.json fastapi-lambda:security-test
+
+echo "Security testing complete!"
+```
+
+### Xem Kết quả trong GitLab CI/CD
+
+Sau khi push code, xem kết quả security scan:
+
+1. Điều hướng đến **CI/CD** → **Pipelines**
+2. Click vào pipeline run
+3. Xem `lint_and_scan` job logs cho Semgrep results
+4. Xem `build_and_push` job logs cho Trivy results
+
+![GitLab Pipeline Logs](/images/5-Workshop/5.3-Setting-up-GitLab-CI-CD-Pipeline/5.3.2-DevSecOps-Security-Testing&Configuration/semgrep-results-gitlab.png)
+
+![GitLab Pipeline Logs](/images/5-Workshop/5.3-Setting-up-GitLab-CI-CD-Pipeline/5.3.2-DevSecOps-Security-Testing&Configuration/codebuild-logs.png)
+
+### Best Practices
+
+1. **Run Before Push**: Test local trước khi push
+2. **Fail Fast**: Dùng `--exit-code 1` để fail builds trên critical findings
+3. **Severity Threshold**: Chỉ block trên HIGH và CRITICAL findings
+4. **Regular Updates**: Cập nhật Semgrep rules và Trivy database thường xuyên
 

@@ -28,3 +28,5 @@ pre: " <b> 1. </b> "
 **Tuần 10:** [Củng cố DevOps với CodeBuild, CodePipeline, ECR, ECS và xây dựng API với API Gateway và Lambda](1.10-week10/)
 
 **Tuần 11:** [Đóng gói ứng dụng Node.js bằng Docker, triển khai với Docker Compose và thực hành IaC với Terraform](1.11-week11/)
+
+**Tuần 12:** [Hoàn thành các phần còn thiếu trong dự án cuối kỳ và học Kubernetes cơ bản](1.12-week12/)
