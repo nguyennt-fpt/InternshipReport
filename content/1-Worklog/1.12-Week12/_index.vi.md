@@ -10,7 +10,7 @@ pre: " <b> 1.12. </b> "
 
 * Hoàn thành tất cả các phần còn thiếu của dự án cuối kỳ, bao gồm cấu hình WAF và thiết lập HTTPS  
 * Xác minh chức năng toàn bộ hệ thống và hoàn thiện tài liệu dự án  
-* Học các kiến thức cơ bản về Kubernetes và thực hành triển khai cụm Kubernetes trên máy ảo tại chỗ  
+* Học các kiến thức cơ bản về Kubernetes và thực hành triển khai cụm Kubernetes trên máy ảo 
 
 ### Các nhiệm vụ cần thực hiện trong tuần này:
 | Ngày | Nhiệm vụ                                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo                        |
