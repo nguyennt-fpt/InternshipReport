@@ -1,9 +1,10 @@
-﻿title: "Worklog tuần 5"
+﻿---
+title: "Worklog tuần 5"
 date: "2025-06-10"
 weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
-
+---
 
 
 ### Mục tiêu tuần 5:
