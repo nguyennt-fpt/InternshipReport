@@ -19,7 +19,7 @@ Follow this guide to deploy a production-ready serverless application with autom
 You will learn how to:
 - Build a **FastAPI** application with clean layered architecture (API → Service → Repository)
 - Package FastAPI as a **Lambda container image** using Mangum adapter
-- Set up **AWS CodePipeline** with **CodeBuild** for automated CI/CD
+- Set up CI/CD
 - Integrate security scanning with **Semgrep** (SAST) and **Trivy** (container vulnerability scanning)
 - Deploy infrastructure using **Terraform** modules
 - Store data in **DynamoDB** tables (products, orders, users)
@@ -32,7 +32,7 @@ You will learn how to:
 
 The architecture is divided into three main domains:
 
-1. **CI/CD Pipeline Domain**: GitLab → CodePipeline → CodeBuild (Semgrep → Docker Build → Trivy) → ECR → Terraform Deploy
+1. **CI/CD Pipeline Domain**: GitLab → (Semgrep → Docker Build → Trivy) → ECR → Terraform Deploy
 2. **Application Domain**: API Gateway HTTP API → Lambda (Container) → FastAPI → DynamoDB + Secrets Manager
 3. **Monitoring Domain**: CloudWatch Logs → CloudWatch Alarms → SNS Alerts
 
@@ -129,7 +129,7 @@ Backend-FastAPI-Docker_Build-Pipeline/
 | **API** | API Gateway HTTP API (v2) |
 | **Database** | Amazon DynamoDB (3 tables) |
 | **Security** | AWS Secrets Manager, IAM |
-| **CI/CD** | AWS CodePipeline, CodeBuild, Amazon ECR |
+| **CI/CD** | Amazon ECR |
 | **Monitoring** | Amazon CloudWatch (Logs, Metrics, Alarms), SNS |
 | **DNS** | Amazon Route 53 (optional) |
 | **IaC** | Terraform |
