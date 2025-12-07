@@ -8,6 +8,12 @@ pre: " <b> 2. </b> "
 
 # Secure Serverless Application Proposal
 
+<div style="text-align: center; margin: 2rem 0;">
+  <a href="/Proposal.docx" download="Proposal.docx" style="display: inline-block; padding: 12px 24px; background-color: #FF9900; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px; transition: background-color 0.3s;">
+     Download Proposal (DOCX)
+  </a>
+</div>
+
 ## 1. Project Summary
 The project operates a serverless application on AWS with a fully automated CI/CD pipeline. When code is pushed to GitLab, the pipeline automatically scans for security vulnerabilities (Semgrep, Trivy), builds containers, provisions infrastructure via Terraform, and deploys images to Amazon ECR. Users access the application through Route 53 → CloudFront → WAF → API Gateway, authenticated by Cognito, invoking Lambda functions for business logic and storing data in DynamoDB. The system continuously monitors through CloudWatch, CloudTrail, and GuardDuty, sending alerts via EventBridge → SNS upon incidents or threats.
 

@@ -8,6 +8,12 @@ pre: " <b> 2. </b> "
 
 # Dự án Serverless Bảo Mật Cho Ứng Dụng Phục Vụ Toàn Cầu
 
+<div style="text-align: center; margin: 2rem 0;">
+  <a href="/Proposal.docx" download="Proposal.docx" style="display: inline-block; padding: 12px 24px; background-color: #FF9900; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px; transition: background-color 0.3s;">
+     Download Proposal (DOCX)
+  </a>
+</div>
+
 ## 1. Tóm tắt dự án
 Dự án vận hành một ứng dụng serverless trên AWS với quy trình CI/CD tự động hoàn toàn. Khi mã nguồn được đẩy lên GitLab, pipeline tự động quét bảo mật (Semgrep, Trivy), build container, triển khai hạ tầng bằng Terraform và đẩy image lên Amazon ECR. Người dùng truy cập qua Route 53 → CloudFront → WAF → API Gateway, được xác thực bởi Cognito và gọi Lambda để xử lý nghiệp vụ, lưu trữ dữ liệu trong DynamoDB. Hệ thống giám sát liên tục qua CloudWatch, CloudTrail, GuardDuty và gửi cảnh báo qua EventBridge → SNS khi phát hiện sự cố hoặc mối đe dọa. 
 
