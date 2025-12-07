@@ -95,4 +95,8 @@ Attending the “DevOps on AWS” event offered valuable real-world insights int
 - Observability must be implemented from the beginning  
 - Containers are the future of application deployment  
 
+#### Event moments
+
+![event 4](/images/4-Event/event4.jpg)
+
 > Overall, the event was highly informative, practical, and provided clear direction for advancing a professional DevOps career.

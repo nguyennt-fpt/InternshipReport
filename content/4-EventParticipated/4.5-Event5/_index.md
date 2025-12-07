@@ -116,15 +116,19 @@ pre: " <b> 4.5. </b> "
 
 Attending the “AWS Well-Architected Security Pillar” event provided practical and comprehensive insights into cloud security practices on AWS.
 
-### Highlights
+#### Highlights
 - Deep understanding of Zero Trust & IAM  
 - Guidance on enterprise-grade logging & alerting  
 - Hands-on incident response demo  
 
-### Lessons Learned
+#### Lessons Learned
 - Cloud security = processes + people + tools  
 - IAM and Detection are top priorities  
 - Automating IR is key to reducing MTTR  
 - Defense in depth is mandatory  
+
+#### Event moments
+
+![event 5](/images/4-Event/event5.jpg)
 
 > The event was highly informative, providing actionable knowledge for cloud engineers, security specialists, and system administrators to improve AWS security operations

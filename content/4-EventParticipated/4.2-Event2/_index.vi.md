@@ -104,5 +104,9 @@ Tham dự sự kiện AI-Driven Development Lifecycle mang lại giá trị lớ
 
 - Hiểu tiềm năng của AI trong các dự án quy mô lớn khi được quản lý đúng cách
 
+#### Khoảnh khắc trong sự kiện
+
+![event 2](/images/4-Event/event2.jpg)
+
 >Nhìn chung, sự kiện mang lại nhiều góc nhìn thực tế về phát triển do AI dẫn dắt, giúp tôi thay đổi tư duy về thiết kế phần mềm, quy trình phát triển đầu-cuối và cách hợp tác hiệu quả giữa con người và AI.
 

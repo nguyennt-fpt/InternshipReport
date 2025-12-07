@@ -99,5 +99,9 @@ Attending the AI-Driven Development Lifecycle event was extremely valuable, prov
 - Experience highlights the need for a structured framework to integrate AI in development.
 - Understanding AI’s potential in large-scale projects with proper management framework.
 
+#### Event moments
+
+![event 2](/images/4-Event/event2.jpg)
+
 >Overall, the event not only provided practical insights into AI-driven development but also helped me rethink software design, end-to-end development processes, and effective human-AI collaboration.
 

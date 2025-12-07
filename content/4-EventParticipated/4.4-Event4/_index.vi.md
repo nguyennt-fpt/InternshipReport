@@ -95,4 +95,8 @@ Tham dự sự kiện “DevOps on AWS” mang đến nhiều góc nhìn thực 
 - Observability phải được xây từ đầu  
 - Containers là tương lai của deployment  
 
+#### Khoảnh khắc trong sự kiện
+
+![event 4](/images/4-Event/event4.jpg)
+
 > Một sự kiện giàu kiến thức, thực chiến và định hướng rõ ràng cho lộ trình DevOps chuyên nghiệp.

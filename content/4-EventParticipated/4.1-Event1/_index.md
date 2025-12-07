@@ -108,5 +108,9 @@ Attending the “Migration & Modernization” track was extremely valuable, givi
 - AI tools like Q Developer can cut costs and boost productivity when integrated into workflows
 - Security must be embedded from the start, supported by services like AWS Security Hub for compliance and risk management 
 
+#### Event moments
+
+![event 1](/images/4-Event/event1.jpg)
+
 > Overall, the event enriched my technical expertise while inspiring a new perspective on application design, modernization strategies, and effective cross-team collaboration.
 

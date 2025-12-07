@@ -113,5 +113,9 @@ Tham dự sự kiện mang lại góc nhìn mới về cách xây dựng hệ th
 - Agentic AI là hướng đi tất yếu cho automation nâng cao  
 - Bedrock Agent Core giúp xây dựng agents mạnh, bảo mật và dễ mở rộng  
 
+#### Khoảnh khắc trong sự kiện
+
+![event 3](/images/4-Event/event3.jpg)
+
 > Sự kiện đã mở rộng tư duy của tôi về GenAI, đặc biệt là tính hữu dụng của các AI agents thông minh và ứng dụng chúng vào quy trình doanh nghiệp.
 

@@ -112,4 +112,8 @@ Attending the event provided a fresh perspective on building modern AI systems, 
 - Agentic AI is essential for advanced automation  
 - Bedrock Agent Core enables building strong, secure, and scalable agents  
 
+#### Event moments
+
+![event 3](/images/4-Event/event3.jpg)
+
 > The event broadened my perspective on GenAI, especially the usefulness of intelligent AI agents and applying them to enterprise workflows.

@@ -107,5 +107,9 @@ Tham dự track “Migration & Modernization” mang lại giá trị to lớn, 
 - AI tools như Q Developer giúp giảm chi phí, tăng năng suất khi tích hợp vào workflow
 - Security cần được nhúng từ đầu (embedded from the start), kết hợp với AWS Security Hub để quản lý rủi ro và tuân thủ
 
+#### Khoảnh khắc trong sự kiện
+
+![event 1](/images/4-Event/event1.jpg)
+
 > Sự kiện Vietnam Cloud Day 2025 giúp tôi mở rộng kiến thức kỹ thuật, hiểu rõ hơn về application design, modernization strategies, và hiệu quả hợp tác liên nhóm (cross-team collaboration) trong môi trường AWS hiện đại.
 

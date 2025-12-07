@@ -116,15 +116,19 @@ pre: " <b> 4.5. </b> "
 
 Tham dự sự kiện "AWS Well-Architected Security Pillar" mang lại những hiểu biết thực tiễn và toàn diện về các thực hành bảo mật cloud trên AWS.
 
-### Điểm nổi bật
+#### Điểm nổi bật
 - Hiểu sâu về Zero Trust & IAM  
 - Hướng dẫn logging & alerting cấp doanh nghiệp  
 - Demo thực hành incident response  
 
-### Bài học rút ra
+#### Bài học rút ra
 - Bảo mật cloud = quy trình + con người + công cụ  
 - IAM và Detection là ưu tiên hàng đầu  
 - Tự động hóa IR là chìa khóa giảm MTTR  
 - Defense in depth là bắt buộc  
+
+#### Khoảnh khắc trong sự kiện
+
+![event 5](/images/4-Event/event5.jpg)
 
 > Sự kiện rất bổ ích, cung cấp kiến thức có thể áp dụng ngay cho cloud engineers, chuyên gia bảo mật và system administrators để cải thiện hoạt động bảo mật AWS
